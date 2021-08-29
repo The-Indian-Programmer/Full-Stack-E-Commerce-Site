@@ -1,0 +1,12 @@
+.heading {
+  color: red;
+}
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  margin-top: 2rem;
+}

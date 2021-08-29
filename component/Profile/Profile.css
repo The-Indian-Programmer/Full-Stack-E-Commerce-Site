@@ -1,0 +1,71 @@
+.profile {
+  height: 90vh;
+  width: 100%;
+  padding: 10px;
+}
+.profile .profile_container {
+  width: 95%;
+  height: 100%;
+  display: block;
+  background: white;
+  margin: auto;
+  border-radius: 5px;
+}
+.profile .profile_container .profile_header {
+  height: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+.profile .profile_container .profile_header i {
+  height: 80%;
+  width: 40px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0px solid #ccc;
+  transition: all 0.5s;
+}
+.profile .profile_container .profile_header .admin_button {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.profile .profile_container .profile_header .admin_button button {
+  height: 80%;
+  font-weight: bolder;
+  margin-left: 5px;
+  padding: 0px 10px;
+  background: white;
+  cursor: pointer;
+  outline: none;
+}
+.profile .profile_container .profile_header i:hover {
+  background: #fff;
+  border: 2px solid #ccc;
+}
+.profile .profile_container .profile_header .breadcrumps {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.profile .profile_container .profile_header .breadcrumps .home {
+  color: var(--link-color);
+  cursor: pointer;
+  margin: 0;
+}
+.profile .profile_container .profile_header .breadcrumps .profile {
+  color: gray;
+  cursor: text;
+  margin: 0;
+}
+.profile .profile_container .profile_body {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 5px;
+}
