@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import ProfileUserInfo from "./ProfileUserInfo/ProfileUserInfo";
 import ProfileUserActivityInfo from "./ProfileUserActivityInfo/ProfileUserActivityInfo";
-const UserProfile = ({ data }) => {
+const UserProfile = ({ orderdata, data }) => {
   const router = useRouter();
   const adminRouter = () => {
     return (
@@ -40,7 +40,7 @@ const UserProfile = ({ data }) => {
       </div>
       <div className="profile_body">
         <ProfileUserInfo data={data} />
-        <ProfileUserActivityInfo data={data} />
+        <ProfileUserActivityInfo orderdata={orderdata} data={data} />
       </div>
     </>
   );

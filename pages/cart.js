@@ -37,6 +37,9 @@ const Cart = () => {
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossorigin="anonymous"
         />
+        <script
+          src={`https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}&currency=USD`}
+        ></script>
       </Head>
       <main>
         {Object.keys(user).length === 0 ? (
@@ -44,13 +47,23 @@ const Cart = () => {
         ) : (
           <>
             <div className="cart_items">
+              {user.basket.length === 0 ? (
+                <div className="emptybasket">
+                  <img
+                    src="https://res.cloudinary.com/sumitkosta/image/upload/v1630935833/samples/tlyvyd1w3ds41exxnc3u.png"
+                    alt=""
+                  />
+                </div>
+              ) : (
+                ""
+              )}
               {/* cart-item  */}
               {user.basket.map((item) => {
                 return <CartItem item={item} />;
               })}
             </div>
             <div className="checkout">
-              <Checkout data={user.basket} />
+              <Checkout user={user} data={user.basket} />
             </div>
           </>
         )}

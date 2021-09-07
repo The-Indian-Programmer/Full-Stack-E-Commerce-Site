@@ -19,6 +19,7 @@ const getproductData = async (req, res) => {
       return res.status(400).json({ err: "Some Error found" });
     }
     res.json({ product: product, message: "Product Found" });
+    // res.status(200).json({ message: "Product Found" });
   } catch (error) {
     return res.status(500).json({ err: "Error Found" });
   }

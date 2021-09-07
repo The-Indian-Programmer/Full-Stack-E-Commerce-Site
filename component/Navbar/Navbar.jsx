@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
+import { getCategories } from "../../src/routes/category";
+import { showNotification } from "../../store";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../../store/index";
+
 const Navbar = ({ children }) => {
   const user = useSelector((state) => state.setUser);
+  const dispatch = useDispatch();
   const signOut = () => {
     Cookies.remove("userAuth");
   };
+  useEffect(async () => {
+    const response = await getCategories("category/getcategory");
+    if (response.err)
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: "Sorry Category not found !", type: "error" },
+        })
+      );
+    dispatch(setCategory(response.data));
+  }, []);
   return (
     <div className="header">
       <div className="header_left">
@@ -42,7 +59,7 @@ const Navbar = ({ children }) => {
           </Link>
           {Object.keys(user).length !== 0 ? (
             <>
-              <Link href="profile">
+              <Link href={`/profile/${user._id}`}>
                 <li className="link">
                   <i className="fas fa-user signout_icon"></i>
                   <p className="text">Profile</p>

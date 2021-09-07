@@ -30,7 +30,7 @@ const register = async (req, res) => {
       password: password_hash,
     });
     const token = await newUser.generateAuthToken();
-    // console.log(token);
+    
     const userSave = await newUser.save();
     if (userSave) {
       res.status(201).json({ msg: "Registration Success", data: newUser });

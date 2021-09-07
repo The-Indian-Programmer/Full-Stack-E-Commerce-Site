@@ -1,0 +1,206 @@
+.edit_product_page {
+  height: 90vh;
+  width: 100%;
+  background-color: #fff;
+}
+.edit_product_page .container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+.edit_product_page .container form {
+  flex-basis: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.edit_product_page .container form > .title,
+.edit_product_page .container form > .price,
+.edit_product_page .container form > .originalprice,
+.edit_product_page .container form > .instock {
+  height: 40px;
+  width: 100%;
+  background-color: white;
+  border: 2px solid #ddd;
+  margin-top: 5px;
+  border-radius: 5px;
+  position: relative;
+}
+.edit_product_page .container form > .description,
+.edit_product_page .container form > .content {
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  border: 2px solid #ddd;
+  margin-top: 5px;
+  border-radius: 5px;
+  position: relative;
+}
+.edit_product_page .container form > div input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 5px;
+}
+.edit_product_page .container form > .description textarea,
+.edit_product_page .container form > .content textarea {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  resize: none;
+  padding: 5px;
+  border: none;
+}
+.edit_product_page .container form > .category {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  border: 2px solid #ddd;
+  font-weight: bold;
+  position: relative;
+  margin-top: 5px;
+}
+.edit_product_page .container form > .category select {
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.edit_product_page .container form > .isprime {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 40px;
+  align-items: flex-start;
+  border: 2px solid #ddd;
+  font-weight: bold;
+  position: relative;
+  margin-top: 15px;
+}
+
+.edit_product_page .container form > .isprime select {
+  background-color: #fff;
+  width: 100%;
+  flex-basis: 75%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.edit_product_page .container form button {
+  height: 40px;
+  width: 100%;
+  font-weight: bold;
+  outline: none;
+  border: 2px solid black;
+  background-color: var(--main-color);
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+/* -------------------image -----------------------  */
+.edit_product_page .container .image_container {
+  flex-basis: 50%;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.edit_product_page .container .image_container::-webkit-scrollbar {
+  display: none;
+}
+.edit_product_page .container .image_container .image_input {
+  height: 40px;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+}
+.edit_product_page .container .image_container .image_input label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+  font-weight: bold;
+  cursor: pointer;
+}
+.edit_product_page .container .image_container .image_input input {
+  display: none;
+}
+.edit_product_page .container .images {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.edit_product_page .container .images .image {
+  height: 150px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit_product_page .container .images .image img {
+  height: 120px;
+  width: 100%;
+  /* transform: translate(-50%, -50%); */
+  object-fit: contain;
+  transform: scale(0.9);
+  transition: all 0.5s;
+}
+.edit_product_page .container .images .image img:hover {
+  transform: scale(1);
+}
+.edit_product_page .container .images .image span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: #000;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.edit_product_page .container .images .image span:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}

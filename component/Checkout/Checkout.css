@@ -85,3 +85,35 @@
 .checkout .checkout_container form .checkout_submit:hover {
   background: var(--main-hover-color);
 }
+
+.paymentmodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+}
+.paymentmodal > .paypal {
+  width: 50%;
+  display: block;
+  margin: auto;
+  background-color: #fff;
+  padding: 10px;
+}
+.paymentmodal span {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 25px;
+  border-radius: 5px;
+  background-color: #ddd;
+}

@@ -1,8 +1,8 @@
-const initialState = false;
+const initialState = { show: false, data: { message: "", type: "" } };
 const show = (state = initialState, action) => {
   switch (action.type) {
     case "SHOWNOTIFICATION":
-      state = true;
+      state = action.payload;
       return state;
       break;
 

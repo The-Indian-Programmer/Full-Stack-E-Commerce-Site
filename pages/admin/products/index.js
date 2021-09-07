@@ -1,10 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { getProductData } from "../../../src/routes/productData";
+import {
+  deleteProductData,
+  getProductData,
+} from "../../../src/routes/productData";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { showNotification } from "../../../store/index";
 
 const Products = ({ product }) => {
   const router = useRouter();
+  const [productData, setProductData] = useState(product);
+  const dispatch = useDispatch();
+  const handleProductDelete = async (index, id) => {
+    const deleteResponse = await deleteProductData("product/deleteproduct", id);
+    if (deleteResponse.err) {
+      return dispatch(
+        showNotification({
+          show: true,
+          data: { message: deleteResponse.err, type: "error" },
+        })
+      );
+    }
+    const newItem = productData.filter((item) => {
+      return item._id !== id;
+    });
+    setProductData(newItem);
+    dispatch(
+      showNotification({
+        show: true,
+        data: { message: deleteResponse.message, type: "success" },
+      })
+    );
+  };
   return (
     <>
       <Head>
@@ -35,7 +63,7 @@ const Products = ({ product }) => {
             <th>IsPrime</th>
             <th>Actions</th>
           </tr>
-          {product.map((item, index) => {
+          {productData.map((item, index) => {
             return (
               <tr className="body">
                 <td>{index + 1}</td>
@@ -49,13 +77,18 @@ const Products = ({ product }) => {
                 <td>{item.originalprice}</td>
                 <td>{item.sold}</td>
                 <td>{item.inStock}</td>
-                <td>{item.isPrime ? "Yes" : "No"}</td>
+                <td>{item.checked ? "Yes" : "No"}</td>
                 <td className="action_buttons">
                   <i
-                    onClick={() => router.push(`admin/editproduct/${item._id}`)}
+                    onClick={() =>
+                      router.push(`/admin/editproduct/${item._id}`)
+                    }
                     className="fas fa-edit product_edit"
                   ></i>
-                  <i className="far fa-trash-alt product_delete"></i>
+                  <i
+                    onClick={() => handleProductDelete(index, item._id)}
+                    className="far fa-trash-alt product_delete"
+                  ></i>
                 </td>
               </tr>
             );

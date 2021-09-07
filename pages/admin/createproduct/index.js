@@ -4,12 +4,14 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { getData } from "../../../src/routes/userData";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../../store/index";
+import { setUser, showNotification } from "../../../store/index";
 import { getCategories } from "../../../src/routes/category";
 import { imageUpload } from "../../api/upload/imageUpload";
 import { postProductData } from "../../../src/routes/productData";
+import ButtonLoader from "../../../component/ButtonLoader/ButtonLoader";
 const CreateProduct = ({ data }) => {
   const [images, setImages] = useState([]);
+  const [btnLoading, setBtnLoading] = useState(false);
   const [inputData, setInputData] = useState({
     title: "",
     price: "",
@@ -17,8 +19,8 @@ const CreateProduct = ({ data }) => {
     instock: "",
     description: "",
     content: "",
-    category: "",
-    isprime: "",
+    category: "microsoft",
+    isprime: false,
   });
   const router = useRouter();
   const cookie = Cookies.get("userAuth");
@@ -41,13 +43,44 @@ const CreateProduct = ({ data }) => {
     setInputData({ ...inputData, [name]: value });
   };
   const handleFormSubmit = async () => {
-    console.log("hello");
-    let media = [];
-    const imgNewUrl = images.filter((img) => !img.url);
-    const imgOldUrl = images.filter((img) => img.url);
-    console.log(imgNewUrl);
-    const imagedata = await imageUpload(imgNewUrl);
-    console.log(imagedata);
+    setBtnLoading(true);
+    const imagedata = await imageUpload(images);
+    const createProductResponse = await postProductData(
+      "product/createproduct",
+      {
+        productInfo: inputData,
+        images: imagedata,
+      }
+    );
+    if (createProductResponse.err) {
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: createProductResponse.err, type: "error" },
+        })
+      );
+      setBtnLoading(false);
+      return;
+    }
+    setInputData({
+      title: "",
+      price: "",
+      originalprice: "",
+      instock: "",
+      description: "",
+      content: "",
+      category: "microsoft",
+      isprime: "",
+    });
+    setImages([]);
+    dispatch(
+      showNotification({
+        show: true,
+        data: { message: createProductResponse.message, type: "success" },
+      })
+    );
+    router.push("/admin/products");
+    setBtnLoading(false);
   };
 
   const handleUploadChange = (e) => {
@@ -78,9 +111,6 @@ const CreateProduct = ({ data }) => {
   };
 
   const removeImage = (index) => {
-    // const image = images.splice(index, 1);
-    // console.log(image, index);
-    // console.log(images);
     const imagebox = images.filter(function (file, i) {
       return i !== index;
     });
@@ -170,7 +200,7 @@ const CreateProduct = ({ data }) => {
             >
               {data.map((item) => {
                 return (
-                  <option key={item._id} value={item._id}>
+                  <option key={item._id} value={item.name}>
                     {item.name.toUpperCase()}
                   </option>
                 );
@@ -185,8 +215,8 @@ const CreateProduct = ({ data }) => {
               onChange={handleChange}
               id="isprime"
             >
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
             </select>
           </div>
 
@@ -195,7 +225,7 @@ const CreateProduct = ({ data }) => {
             onClick={handleFormSubmit}
             className="btn_create_product"
           >
-            Submit
+            {btnLoading ? <ButtonLoader /> : "Submit"}
           </button>
         </form>
         <div className="image_container">
@@ -212,7 +242,7 @@ const CreateProduct = ({ data }) => {
           <div className="images">
             {images.map((file, index) => {
               return (
-                <div key={index} className="image">
+                <div key={index} className={`image`}>
                   <img
                     src={file.url ? file.url : URL.createObjectURL(file)}
                     alt=""

@@ -5,6 +5,11 @@ const Schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    content: {
+      type: String,
+      required: true,
+    },
+
     description: {
       type: String,
       required: true,
@@ -43,7 +48,7 @@ const Schema = new mongoose.Schema(
     },
     sold: {
       type: Number,
-      required: true,
+      default: 0,
     },
     checked: {
       type: Boolean,

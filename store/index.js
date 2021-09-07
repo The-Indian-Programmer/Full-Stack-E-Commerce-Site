@@ -35,3 +35,24 @@ export const decreaseProduct = (data) => {
     payload: data,
   };
 };
+
+export const setCategory = (data) => {
+  return {
+    type: "SETCATEGORY",
+    payload: data,
+  };
+};
+
+export const deleteCategory = (data) => {
+  return {
+    type: "DELETECATEGORY",
+    payload: data,
+  };
+};
+
+export const editCategory = (data) => {
+  return {
+    type: "EDITCATEGORY",
+    payload: data,
+  };
+};

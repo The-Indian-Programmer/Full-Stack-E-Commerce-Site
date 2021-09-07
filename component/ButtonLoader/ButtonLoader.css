@@ -1,0 +1,37 @@
+.btn_loader {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn_loader div {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: #fff;
+  animation: rotateloader 1s linear infinite;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 55%,
+    rgb(0, 0, 0) 51.5%
+  );
+  position: relative;
+}
+.btn_loader div::before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  background-color: var(--main-color);
+  right: 0;
+}
+@keyframes rotateloader {
+  to {
+    transform: rotate(360deg);
+  }
+}

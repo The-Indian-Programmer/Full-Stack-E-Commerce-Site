@@ -35,7 +35,7 @@ const Schema = new mongoose.Schema(
       type: String,
       required: true,
       default:
-        "https://res.cloudinary.com/da4nd5uif/image/upload/v1629737054/portofolio/g_cncn9m.jpg",
+        "https://res.cloudinary.com/sumitkosta/image/upload/v1630833466/e1u303ue2hrepv1rzhzd.jpg",
     },
     tokens: [
       {

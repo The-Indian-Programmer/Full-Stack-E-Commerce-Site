@@ -8,6 +8,8 @@ import { setUser } from "../../store/index";
 import Head from "next/head";
 import { addToBasket } from "../../src/routes/userBasket";
 import { useSelector } from "react-redux";
+import ProductQuestions from "../../component/ProductQuestions/ProductQuestions";
+import ProductReviews from "../../component/ProductReviews/ProductReviews";
 const ProductId = ({ data }) => {
   const user = useSelector((state) => state.setUser);
   const [tab, setTab] = useState(0);
@@ -15,6 +17,7 @@ const ProductId = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
+  const [showTab, setShowTab] = useState(0);
   useEffect(() => {
     if (cookie === undefined) {
       router.push("../signin");
@@ -27,10 +30,14 @@ const ProductId = ({ data }) => {
       return;
     }
   }, []);
+
+  // set User in redux
   const setUserInRedux = async () => {
     const response = await getData("auth/getuser", cookie);
     dispatch(setUser(response.data));
   };
+
+  // add product to baset
   const addProductToBasket = async () => {
     const checkItem = user.basket.filter((item) => {
       return item._id === data._id;
@@ -103,6 +110,25 @@ const ProductId = ({ data }) => {
               Add To Cart
             </button>
           </div>
+          <div className="tabs">
+            <div className="tab_header">
+              <p onClick={() => setShowTab(0)} className="questions_text">
+                Questions
+              </p>
+              <p onClick={() => setShowTab(1)} className="reviews_text">
+                Reviews
+              </p>
+            </div>
+            <div className="tab_container">
+              {showTab === 0 ? (
+                <ProductQuestions data={data.product} />
+              ) : showTab === 1 ? (
+                <ProductReviews data={data.product} />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </>
@@ -116,6 +142,8 @@ export async function getServerSideProps(context) {
     context.query.id
   );
   return {
-    props: { data: response },
+    props: {
+      data: response,
+    },
   };
 }

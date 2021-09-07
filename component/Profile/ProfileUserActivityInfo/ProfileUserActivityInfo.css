@@ -1,0 +1,22 @@
+.activity_info {
+  height: 100%;
+  width: 100%;
+  padding: 0px 0px;
+}
+.activity_info .tabs {
+  display: flex;
+  flex-direction: row;
+  background-color: #ddd;
+  align-items: center;
+  justify-content: space-between;
+}
+.activity_info .tabs > p {
+  font-weight: bold;
+  padding: 15px 0px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.activity_info .tabs > p.active {
+  background-color: #fff;
+}
