@@ -9,6 +9,8 @@ import { setUser } from "../store/index";
 import { useRouter } from "next/dist/client/router";
 import { getData } from "../src/routes/userData";
 import { getProductData } from "../src/routes/productData";
+import Banner from "../component/Banner/Banner";
+import PrimeProducts from "../component/PrimeProducts/PrimeProducts";
 function Home({ data }) {
   const dispatch = useDispatch();
   const cookie = Cookies.get("userAuth");
@@ -39,7 +41,9 @@ function Home({ data }) {
       </Head>
 
       <main className={styles.main}>
-        <div className="products">
+        <Banner />
+        <div className="homepage">
+          <PrimeProducts data={data} />
           <Homes data={data} />
         </div>
       </main>

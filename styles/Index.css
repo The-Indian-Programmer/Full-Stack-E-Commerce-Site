@@ -1,0 +1,12 @@
+@import url("../component/Banner/Banner.css");
+@import url("../component//PrimeProducts/PrimeProducts.css");
+.homepage {
+  padding: 0rem;
+}
+.homepage .product_text {
+  width: 90%;
+  display: block;
+  margin: 4rem 3.2rem 0rem 3.2rem;
+  font-family: var(--roboto-font);
+  color: var(--text-color);
+}

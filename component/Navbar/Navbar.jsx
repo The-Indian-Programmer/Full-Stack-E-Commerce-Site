@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
@@ -6,10 +6,16 @@ import { getCategories } from "../../src/routes/category";
 import { showNotification } from "../../store";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../../store/index";
+import NavbarDropDown from "./NavbarDropDown";
 
 const Navbar = ({ children }) => {
   const user = useSelector((state) => state.setUser);
+  const category = useSelector((state) => state.category);
+  const [search, setSearch] = useState("");
+  const [categoryInput, setCategoryInput] = useState("all");
+  const [showDropDown, setShowDropDown] = useState(false);
   const dispatch = useDispatch();
+
   const signOut = () => {
     Cookies.remove("userAuth");
   };
@@ -26,67 +32,75 @@ const Navbar = ({ children }) => {
   }, []);
   return (
     <div className="header">
-      <div className="header_left">
-        <Link href="/">
-          <h2 className="logo">E-Commerce App</h2>
-        </Link>
-        <i className="fas fa-bars menu_icon"></i>
-        <div className="input">
+      {/* header left  */}
+      <Link href="/">
+        <div className="header_left">
+          <div className="logo">
+            <img
+              src="https://res.cloudinary.com/sumitkosta/image/upload/v1631034881/vmtrnolycnzkgx3v191e.png"
+              alt=""
+              className="logo_image"
+            />
+            <p className="logo_text">Next E-Commerce</p>
+          </div>
+        </div>
+      </Link>
+      {/* header middle */}
+      <div className="header_middle">
+        <select
+          name="selectcategories"
+          id="selectcategories"
+          value={categoryInput}
+          onChange={(e) => setCategoryInput(e.target.value)}
+        >
+          <option value="all" name="category">
+            {" "}
+            ALL
+          </option>
+          {category.map((item) => {
+            return (
+              <option value={item.name} name="category">
+                {item.name.toUpperCase()}
+              </option>
+            );
+          })}
+        </select>
+        {/* /// search  */}
+        <div className="search">
           <input
             type="text"
             className="input_search"
-            placeholder="Search Any Product"
+            value={search}
+            placeholder="Search Here"
+            onChange={(e) => setSearch(e.target.value)}
           />
-          <i className="fas fa-search search_icon"></i>
         </div>
       </div>
-
       <div className="header_right">
-        <ul>
-          <Link href="/">
-            <li className="link">
-              <i className="fas fa-home icon home_icon"></i>
-              <p className="text">Home</p>
-            </li>
-          </Link>
-          <Link href="/cart">
-            <li className="link">
-              <i className="fas fa-shopping-cart icon cart_icon"></i>
-              <p className="text">
-                Cart{Object.keys(user).length !== 0 ? user.basket.length : ""}
-              </p>
-            </li>
-          </Link>
-          {Object.keys(user).length !== 0 ? (
-            <>
-              <Link href={`/profile/${user._id}`}>
-                <li className="link">
-                  <i className="fas fa-user signout_icon"></i>
-                  <p className="text">Profile</p>
-                </li>
-              </Link>
-              <li onClick={() => signOut()} className="link">
-                <i className="fas fa-sign-out-alt icon signout_icon"></i>
-                <p className="text">SignOut</p>
-              </li>
-            </>
+        <Link href="/cart">
+          <div className="cart">
+            <i class="fas fa-shopping-cart shopping_icon"></i>
+            <span className="cart_count">
+              {user.basket ? user.basket.length : "0"}
+            </span>
+          </div>
+        </Link>
+        <div className="profile">
+          <img
+            src={user.avatar}
+            className="profile_image"
+            alt=""
+            onClick={() => setShowDropDown(!showDropDown)}
+          />
+          {showDropDown ? (
+            <NavbarDropDown
+              showDropDown={showDropDown}
+              setShowDropDown={setShowDropDown}
+            />
           ) : (
-            <>
-              <Link href="signin">
-                <li className="link">
-                  <i className="fas fa-user-circle icon signin_icon"></i>
-                  <p className="text">SignIn</p>
-                </li>
-              </Link>
-              <Link href="/register">
-                <li className="link">
-                  <i className="fas fa-user-circle icon signin_icon"></i>
-                  <p className="text">Register</p>
-                </li>
-              </Link>
-            </>
+            ""
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );

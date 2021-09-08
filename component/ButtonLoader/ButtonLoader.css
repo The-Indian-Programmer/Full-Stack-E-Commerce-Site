@@ -6,8 +6,8 @@
   align-items: center;
 }
 .btn_loader div {
-  height: 30px;
-  width: 30px;
+  height: 15px;
+  width: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@
   background: radial-gradient(
     ellipse at center,
     rgba(0, 0, 0, 0) 55%,
-    rgb(0, 0, 0) 51.5%
+    rgb(255, 255, 255) 51.5%
   );
   position: relative;
 }
@@ -27,7 +27,7 @@
   content: "";
   height: 15px;
   width: 15px;
-  background-color: var(--main-color);
+  background: none;
   right: 0;
 }
 @keyframes rotateloader {

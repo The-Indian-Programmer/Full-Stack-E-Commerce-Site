@@ -1,22 +1,40 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Ubuntu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto:wght@300&family=Titillium+Web:wght@200&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  background-color: #ccc;
   height: 100vh;
   font-family: "Ubuntu", sans-serif;
 }
 :root {
   --primary-color: #ffd814;
-  --main-color: #febd69;
-  --main-hover-color: #ffaa33;
-  --secondary-color: #232f3e;
-  --link-color: #016eff;
-  --text-link-color: #fff;
-  --text-color: #000;
+  --main-color: #4c3be1;
+  --main-hover-color: #3331c1;
+  --secondary-color: #f6f4fc;
+  --link-color: #22125a;
+  --text-link-color: #006eff;
+  --primary-text-color: #000;
+  --secondary-text-color: #fff;
+  --gray-text-color: gray;
+  --box-shadow: #ddd;
+  --button-color: #24e452;
+  --button-hover-color: #23d9c3;
+  --roboto-font: "Roboto", sans-serif;
+  --web-font: "Titillium Web", sans-serif;
+  --dancing-font: "Dancing Script", cursive;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.main_page {
+  margin-top: 4.4rem;
+}
+@media only screen and (max-width: 690px) {
+  .main_page {
+    margin-top: 6.71rem;
+  }
 }
 /* .dark-theme {
   --primary-color: #ffd814;
@@ -27,6 +45,8 @@ body {
   --text-color: #000;
 } */
 
+@import url("./Index.css");
+@import url("../component/Footer/Footer.css");
 @import url("../component/SignInPage/SignIn.css");
 @import url("../component/Home/Home.css");
 @import url("../component/productItem/ProductItem.css");

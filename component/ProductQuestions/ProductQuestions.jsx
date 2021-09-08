@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showNotification } from "../../store/index";
 import { postProductQuestion } from "../../src/routes/productquestion";
 import { useRouter } from "next/dist/client/router";
+import EmptyEntry from "../Empty/EmptyEntry";
 const ProductQuestions = ({ data }) => {
   console.log(data);
   const user = useSelector((state) => state.setUser);
@@ -53,6 +54,11 @@ const ProductQuestions = ({ data }) => {
       </div>
       {/* questions  */}
       <div className="questions">
+        {data.questions.length === 0 ? (
+          <EmptyEntry text="No Question! Be the first to ask a question" />
+        ) : (
+          ""
+        )}
         {data.questions.map((item) => {
           return (
             <div className="question_box">

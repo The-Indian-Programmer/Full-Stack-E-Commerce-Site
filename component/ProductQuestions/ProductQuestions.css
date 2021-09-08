@@ -69,6 +69,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.9);
+  z-index: 3;
 }
 .product_questions .modal form {
   width: 50%;
@@ -123,4 +124,11 @@
   background-color: rgb(0, 91, 165);
   color: white;
   border: 1px solid rgb(0, 91, 165);
+}
+@media only screen and (max-width: 690px) {
+  .product_questions .modal form {
+    width: 95%;
+    height: 60vh;
+    z-index: 5;
+  }
 }

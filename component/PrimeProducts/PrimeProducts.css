@@ -1,0 +1,123 @@
+.prime_products {
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+.prime_products .discount_text {
+  width: 90%;
+  display: block;
+  margin: 20px 3.2rem;
+  font-family: var(--roboto-font);
+  color: var(--text-color);
+}
+
+.prime_products .left_arrow {
+  position: absolute;
+  content: "";
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  width: 30px;
+  transform: rotate(180deg);
+  cursor: pointer;
+  background-size: cover;
+  border-radius: 50%;
+  left: -2rem;
+  z-index: 2;
+}
+.prime_products .right_arrow {
+  position: absolute;
+  content: "";
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-size: cover;
+  border-radius: 50%;
+  right: -2rem;
+  z-index: 2;
+}
+
+.prime_products .prime_product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 100%; */
+  height: 170px;
+  margin: 0px 10px;
+}
+.prime_products .prime_product .box {
+  background-color: var(--secondary-color);
+  width: 350px;
+  height: 100%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  position: relative;
+  padding: 5px 10px;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.prime_products .prime_product .box:hover {
+  box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.5);
+}
+.prime_products .prime_product .box::after {
+  position: absolute;
+  content: "";
+  z-index: 3;
+  height: 20px;
+  width: 20px;
+  top: 0px;
+  filter: invert(1);
+  right: 5px;
+  background-image: url("https://res.cloudinary.com/sumitkosta/image/upload/v1631080695/nextjs-ecommerce/otzxijsgpwvulpqyuogk.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.prime_products .prime_product .box .title {
+  font-size: 1.1rem;
+  color: var(--link-color);
+  user-select: none;
+}
+.prime_products .prime_product .box .desc {
+  font-size: 0.9rem;
+  margin: 8px 0px;
+  width: 70%;
+  height: 50px;
+  overflow: hidden;
+}
+.prime_products .prime_product .box .btn_buy {
+  padding: 8px 15px;
+  border-radius: 5px;
+  background: var(--main-color);
+  cursor: pointer;
+  color: var(--secondary-text-color);
+  font-weight: bold;
+  border: none;
+}
+.prime_products .prime_product .box .prime_product_image {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+}
+
+@media only screen and (max-width: 690px) {
+  .prime_product {
+    flex-basis: 100%;
+  }
+  .prime_products .discount_text {
+    font-size: 1.3rem;
+    margin-left: 10px;
+  }
+}

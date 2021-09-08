@@ -4,6 +4,7 @@ import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from "react-redux";
 import { postProductRating } from "../../src/routes/rating";
 import { showNotification } from "../../store/index";
+import EmptyEntry from "../Empty/EmptyEntry";
 
 const ProductReviews = ({ data }) => {
   const user = useSelector((state) => state.setUser);
@@ -55,6 +56,11 @@ const ProductReviews = ({ data }) => {
 
       {/* reviews  */}
       <div className="reviews">
+        {data.reviews.length === 0 ? (
+          <EmptyEntry text="No Reviews! Be the first to submit a review" />
+        ) : (
+          ""
+        )}
         {data.reviews.map((item, index) => {
           return (
             <div className="review_box">

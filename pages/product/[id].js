@@ -9,6 +9,8 @@ import Head from "next/head";
 import { addToBasket } from "../../src/routes/userBasket";
 import { useSelector } from "react-redux";
 import ProductQuestions from "../../component/ProductQuestions/ProductQuestions";
+import ReactStars from "react-rating-stars-component";
+
 import ProductReviews from "../../component/ProductReviews/ProductReviews";
 const ProductId = ({ data }) => {
   const user = useSelector((state) => state.setUser);
@@ -69,66 +71,96 @@ const ProductId = ({ data }) => {
           crossorigin="anonymous"
         />
       </Head>
-      <div className="product">
-        <div className="product_image_container">
-          <img
-            src={data.product.images[tab].url}
-            className="thumbnail_image"
-            alt=""
-          />
-          <div className="image_box">
-            {data.product.images.map((item, index) => {
-              return (
-                <img
-                  onClick={() => setTab(index)}
-                  onMouseMove={() => setTab(index)}
-                  src={item.url}
-                  className={tab === index && `tab_image`}
-                  alt=""
-                />
-              );
-            })}
+      <>
+        <div className="productpage">
+          {/* image container  */}
+          <div className="images_container">
+            <div className="image">
+              <img
+                src={data.product.images ? data.product.images[tab].url : ""}
+                alt=""
+                className="product_image"
+              />
+            </div>
+            <div className="image_slider">
+              {data.product.images.map((item, index) => {
+                return (
+                  <img
+                    key={index}
+                    src={item.url}
+                    onClick={() => setTab(index)}
+                    alt=""
+                    className="slide_image"
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div className="product_detail_container">
-          <h3 className="product_title">{data.product.title}</h3>
-          <p className="description">{data.product.description}</p>
-          <p className="product_rating">
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-          </p>
-          <p className="product_price">
-            Price : <span>$ 3</span>
-          </p>
-          <p className="product_original_price">
-            Original Price : <span>$ 5.6</span>
-          </p>
-          <div className="action_button">
-            <button className="btn_now">Buy Now</button>
-            <button onClick={addProductToBasket} className="btn_addtocart">
+          <div className="productdetail_container">
+            <h6 className="category_text">{data.product.category}</h6>
+            <h2 className="product_title">{data.product.title}</h2>
+            <div className="description">
+              <p className="descriptiontext">{data.product.description}</p>
+            </div>
+            <div className="product_review">
+              <h3 className="review_text">3 Reviews</h3>
+              <ReactStars
+                count={5}
+                edit={false}
+                size={24}
+                value={4}
+                activeColor="#ffd814"
+              />
+            </div>
+            <div className="pricing">
+              <p className="price">
+                &#8377; <span>{data.product.price}</span>
+              </p>
+              <p className="originalprice">
+                &#8377; <span>{data.product.originalprice}</span>
+              </p>
+              <p className="priceoff">
+                Now{" "}
+                {(data.product.originalprice / data.product.price).toFixed(2)}%
+                off
+              </p>
+            </div>
+            <div className="stock">
+              <p className="stocktext">{data.product.inStock} left in stock</p>
+            </div>
+            <div className="content">
+              <p className="content_text">{data.product.content}</p>
+            </div>
+            <button onClick={() => addProductToBasket()} className="addtocart">
               Add To Cart
             </button>
           </div>
-          <div className="tabs">
-            <div className="tab_header">
-              <p onClick={() => setShowTab(0)} className="questions_text">
-                Questions
-              </p>
-              <p onClick={() => setShowTab(1)} className="reviews_text">
-                Reviews
-              </p>
-            </div>
-            <div className="tab_container">
-              {showTab === 0 ? (
-                <ProductQuestions data={data.product} />
-              ) : showTab === 1 ? (
-                <ProductReviews data={data.product} />
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
+        </div>
+        <hr style={{ marginTop: "1rem" }} />
+      </>
+      <div className="product_info_tabs">
+        <div className="tab_header ">
+          <p
+            onClick={() => setShowTab(0)}
+            className={`review_text ${showTab === 0 ? "active" : ""}`}
+          >
+            Reviews
+          </p>
+          <p
+            onClick={() => setShowTab(1)}
+            className={`question_text  ${showTab === 1 ? "active" : ""}`}
+          >
+            Questions
+          </p>
+        </div>
+        <div className="tab_container">
+          {showTab === 0 ? (
+            <ProductReviews data={data.product} />
+          ) : showTab === 1 ? (
+            <ProductQuestions data={data.product} />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

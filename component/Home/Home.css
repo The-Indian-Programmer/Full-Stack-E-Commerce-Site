@@ -1,12 +1,18 @@
-.heading {
-  color: red;
-}
 .products {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-row-gap: 20px;
+  place-items: center;
+  place-content: center;
+  grid-column-gap: 20px;
+  z-index: 2;
+  width: 95%;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
+}
+@media only screen and (max-width: 690px) {
+  .products {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
 }
