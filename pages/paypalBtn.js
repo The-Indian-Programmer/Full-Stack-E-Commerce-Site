@@ -10,17 +10,6 @@ const PaypalBtn = ({
   showNotification,
   setShowButton,
 }) => {
-  // let items = [];
-  // for (let i = 0; i < user.basket.length; i++) {
-  //   const item = user.basket[i];
-  //   let iteminfo = {
-  //     name: item.title,
-  //     description: item.description,
-  //     unit_amount: { currency_code: "USD", value: item.price },
-  //     quantity: item.quantity,
-  //   };
-  //   items.push(iteminfo);
-  // }
   const paypalref = useRef();
   useEffect(() => {
     paypal
@@ -32,6 +21,17 @@ const PaypalBtn = ({
               {
                 amount: {
                   value: Math.ceil(total / 73.73), // Can reference variables or functions. Example: `value: document.getElementById('...').value`
+                },
+                item_list: {
+                  shipping_address: {
+                    recipient_name: "Sumit Kosta",
+                    line2: "Unit #34",
+                    city: "Rath",
+                    country_code: "India",
+                    postal_code: "210431",
+                    phone: "9956573349",
+                    state: "Uttar Pradesh",
+                  },
                 },
               },
             ],

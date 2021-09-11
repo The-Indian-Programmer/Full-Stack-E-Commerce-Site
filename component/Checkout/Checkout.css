@@ -4,19 +4,20 @@
   padding: 5px 10px;
 }
 .checkout .checkout_container {
-  background-color: #fff;
+  background-color: var(--secondary-text-color);
   padding: 10px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--roboto-font);
 }
 .checkout .checkout_container .items {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
 .checkout .checkout_container .items span {
-  color: rgb(70, 0, 0);
-  font-weight: bolder;
+  color: var(--main-color);
   font-size: 1.4rem;
 }
 .checkout .checkout_container .amount {
@@ -25,8 +26,8 @@
   margin-bottom: 10px;
 }
 .checkout .checkout_container .amount span {
-  color: rgb(70, 0, 0);
-  font-size: 1.3rem;
+  color: var(--main-color);
+  font-size: 1.4rem;
 }
 .checkout .checkout_container form {
   display: flex;
@@ -47,7 +48,7 @@
   height: 100%;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid gray;
+  border: 1px solid var(--gray-text-color);
   top: 0;
   left: 0;
   outline: none;
@@ -65,7 +66,7 @@
   height: 100%;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid gray;
+  border: 1px solid var(--gray-text-color);
   top: 0;
   left: 0;
   outline: none;
@@ -78,9 +79,10 @@
   font-weight: bold;
   background: var(--main-color);
   border-radius: 5px;
-  border: 2px solid black;
+  border: none;
   cursor: pointer;
   transition: all 0.5s;
+  color: var(--secondary-text-color);
 }
 .checkout .checkout_container form .checkout_submit:hover {
   background: var(--main-hover-color);

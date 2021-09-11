@@ -53,10 +53,10 @@ const CartItem = ({ item }) => {
         <p className="description">{item.description}</p>
         <div className="price_box">
           <p className="price">
-            Price : <span>$ {item.price}</span>
+            &#8377; <span> {item.price}</span>
           </p>
           <p className="original_price">
-            Original Price : <span>$ {item.originalprice}</span>
+            &#8377; <span> {item.originalprice}</span>
           </p>
         </div>
         <div className="actionbuttons">

@@ -4,6 +4,12 @@ export const showNotification = (data) => {
     payload: data,
   };
 };
+export const setTheme = (data) => {
+  return {
+    type: "SETTHEME",
+    payload: data,
+  };
+};
 
 export const setUser = (data) => {
   return { type: "SETUSER", payload: data };
@@ -36,6 +42,12 @@ export const decreaseProduct = (data) => {
   };
 };
 
+export const searchCategory = (data) => {
+  return {
+    type: "SEARCHCATEGORY",
+    payload: data,
+  };
+};
 export const setCategory = (data) => {
   return {
     type: "SETCATEGORY",

@@ -36,7 +36,11 @@ const addproductrating = async (req, res) => {
       }
     );
     if (productupdate) {
-      return res.json({ message: "Review Added ! " });
+      const product = await productSchema.findById(req.body.productid);
+      if (product) {
+        return res.json({ message: "Review Added ! ", product: product });
+      }
+      return res.json({ message: "Review Added ! ", product: productupdate });
     }
     res.json({ err: "Something went wrong !" });
   } catch (error) {

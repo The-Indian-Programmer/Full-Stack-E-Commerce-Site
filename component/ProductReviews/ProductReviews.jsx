@@ -8,6 +8,7 @@ import EmptyEntry from "../Empty/EmptyEntry";
 
 const ProductReviews = ({ data }) => {
   const user = useSelector((state) => state.setUser);
+  const [productdata, setProductData] = useState(data);
   const router = useRouter();
   const [rating, setRating] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -39,6 +40,7 @@ const ProductReviews = ({ data }) => {
     setShowModal(false);
     setRating(0);
     setRatingtext("");
+    setProductData(response.product);
     dispatch(
       showNotification({
         show: true,
@@ -56,12 +58,12 @@ const ProductReviews = ({ data }) => {
 
       {/* reviews  */}
       <div className="reviews">
-        {data.reviews.length === 0 ? (
+        {productdata.reviews.length === 0 ? (
           <EmptyEntry text="No Reviews! Be the first to submit a review" />
         ) : (
           ""
         )}
-        {data.reviews.map((item, index) => {
+        {productdata.reviews.reverse().map((item, index) => {
           return (
             <div className="review_box">
               <p className="name">

@@ -35,27 +35,6 @@ const Checkout = ({ user, data }) => {
       );
     }
     setBtnLoader(true);
-    // const orderResponse = await addOrder(
-    //   "orders/addorder",
-    //   user,
-    //   userInfo,
-    //   amount
-    // );
-    // if (orderResponse.err) {
-    //   return dispatch(
-    //     showNotification({
-    //       show: true,
-    //       data: { message: orderResponse.err, type: "error" },
-    //     })
-    //   );
-    // }
-    // dispatch(
-    //   showNotification({
-    //     show: true,
-    //     data: { message: orderResponse.message, type: "success" },
-    //   })
-    // );
-    // dispatch(setUser(orderResponse.user));
     setShowButton(true);
     setBtnLoader(false);
   };
@@ -67,7 +46,7 @@ const Checkout = ({ user, data }) => {
             Total items: <span>{data.length}</span>
           </h2>
           <h3 className="amount">
-            Total Amount: <span>$ {amount} Only</span>
+            Total Amount: <span>&#8377; {amount} Only</span>
           </h3>
           <form>
             <div className="address">

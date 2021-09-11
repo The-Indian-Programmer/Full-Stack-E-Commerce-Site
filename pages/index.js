@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../store/index";
 import { useRouter } from "next/dist/client/router";
 import { getData } from "../src/routes/userData";
+import { searchCategory } from "../store";
 import { getProductData } from "../src/routes/productData";
 import Banner from "../component/Banner/Banner";
 import PrimeProducts from "../component/PrimeProducts/PrimeProducts";

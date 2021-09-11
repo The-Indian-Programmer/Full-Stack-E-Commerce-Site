@@ -5,17 +5,15 @@ import Cookies from "js-cookie";
 import { getCategories } from "../../src/routes/category";
 import { showNotification } from "../../store";
 import { useDispatch } from "react-redux";
-import { setCategory } from "../../store/index";
+import { searchCategory, setCategory } from "../../store/index";
 import NavbarDropDown from "./NavbarDropDown";
-
 const Navbar = ({ children }) => {
   const user = useSelector((state) => state.setUser);
+  const inputsearchCategory = useSelector((state) => state.searchCategory);
   const category = useSelector((state) => state.category);
   const [search, setSearch] = useState("");
-  const [categoryInput, setCategoryInput] = useState("all");
   const [showDropDown, setShowDropDown] = useState(false);
   const dispatch = useDispatch();
-
   const signOut = () => {
     Cookies.remove("userAuth");
   };
@@ -50,8 +48,8 @@ const Navbar = ({ children }) => {
         <select
           name="selectcategories"
           id="selectcategories"
-          value={categoryInput}
-          onChange={(e) => setCategoryInput(e.target.value)}
+          value={inputsearchCategory}
+          onChange={(e) => dispatch(searchCategory(e.target.value))}
         >
           <option value="all" name="category">
             {" "}

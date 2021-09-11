@@ -17,6 +17,17 @@ export const getProductById = async (url, id) => {
   const data = await res.json();
   return data;
 };
+export const getProductByCategory = async (url, category) => {
+  const res = await fetch(`${baseurl}/api/${url}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(category),
+  });
+  const data = await res.json();
+  return data;
+};
 export const postProductData = async (url, post) => {
   const res = await fetch(`${baseurl}/api/${url}`, {
     method: "POST",

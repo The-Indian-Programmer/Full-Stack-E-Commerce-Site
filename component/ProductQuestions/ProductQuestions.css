@@ -49,6 +49,16 @@
   font-size: 1rem;
   margin-bottom: 5px;
 }
+.product_questions .questions .question_box .question .question_reply_button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--main-color);
+  color: var(--main-color);
+  cursor: pointer;
+}
 .product_questions .questions .question_box .answer {
   font-size: 0.9rem;
   font-weight: bold;
@@ -121,6 +131,64 @@
   border: 1px solid rgb(24, 24, 24);
 }
 .product_questions .modal form .question_action_button button.submit {
+  background-color: rgb(0, 91, 165);
+  color: white;
+  border: 1px solid rgb(0, 91, 165);
+}
+/* reply modal  */
+.product_questions .replymodal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.product_questions .replymodal form {
+  width: 50%;
+  height: 60vh;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.product_questions .replymodal form .reply {
+  height: 100px;
+  width: 95%;
+  border-radius: 5px;
+  border: 2px solid var(--secondary-color);
+  position: relative;
+}
+.product_questions .replymodal form .reply textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  outline: none;
+  resize: none;
+}
+.product_questions .replymodal form .reply_action_button button {
+  padding: 10px 20px;
+  margin-left: 5px;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.product_questions .replymodal form .reply_action_button button.close {
+  background-color: rgb(24, 24, 24);
+  color: white;
+  border: 1px solid rgb(24, 24, 24);
+}
+.product_questions .replymodal form .reply_action_button button.submit {
   background-color: rgb(0, 91, 165);
   color: white;
   border: 1px solid rgb(0, 91, 165);

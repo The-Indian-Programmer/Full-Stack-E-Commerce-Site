@@ -47,7 +47,7 @@ const Cart = () => {
         ) : (
           <>
             <div className="cart_items">
-              {user.basket.length === 0 ? (
+              {/* {user.basket.length === 0 ? (
                 <div className="emptybasket">
                   <img
                     src="https://res.cloudinary.com/sumitkosta/image/upload/v1630935833/samples/tlyvyd1w3ds41exxnc3u.png"
@@ -56,7 +56,7 @@ const Cart = () => {
                 </div>
               ) : (
                 ""
-              )}
+              )} */}
               {/* cart-item  */}
               {user.basket.map((item) => {
                 return <CartItem item={item} />;

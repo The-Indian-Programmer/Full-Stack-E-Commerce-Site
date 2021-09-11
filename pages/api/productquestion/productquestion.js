@@ -35,7 +35,17 @@ const addproductquestion = async (req, res) => {
       }
     );
     if (productupdate) {
-      return res.json({ message: "Questions Added ! Wait for the reply" });
+      const product = await productSchema.findById(req.body.productid);
+      if (product) {
+        return res.json({
+          message: "Questions Added ! Wait for the reply",
+          product: product,
+        });
+      }
+      return res.json({
+        message: "Questions Added ! Wait for the reply",
+        product: productupdate,
+      });
     }
     res.json({ err: "Something went wrong !" });
   } catch (error) {

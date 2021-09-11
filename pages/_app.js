@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../component/Navbar/Navbar.css";
 import "../component/Register/Register.css";
 import "../component/Toast/Toast.css";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
   return (
