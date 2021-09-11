@@ -39,6 +39,12 @@ const ProductId = ({ data }) => {
     dispatch(setUser(response.data));
   };
 
+  let productRating = 0;
+  for (let i = 0; i < data.product.reviews.length; i++) {
+    const element = data.product.reviews[i];
+    productRating = productRating + element.rating;
+  }
+
   // add product to baset
   const addProductToBasket = async () => {
     const checkItem = user.basket.filter((item) => {
@@ -108,7 +114,8 @@ const ProductId = ({ data }) => {
                 count={5}
                 edit={false}
                 size={24}
-                value={4}
+                half={true}
+                value={productRating / data.product.reviews.length}
                 activeColor="#ffd814"
               />
             </div>

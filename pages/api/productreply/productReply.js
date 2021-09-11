@@ -6,7 +6,7 @@ connectDb();
 export default async (req, res) => {
   switch (req.method) {
     case "POST": {
-      await addproductreplyreq(req, res);
+      await addproductreply(req, res);
     }
     case "PUT": {
       await updateproductreply(req, res);
@@ -17,10 +17,20 @@ export default async (req, res) => {
   }
 };
 
-const addproductreplyreq = async (req, res) => {
+const addproductreply = async (req, res) => {
   try {
     console.log(req.body);
-    res.json({ err: "Something went wrong !" });
+    const update = await productSchema.updateOne(
+      {
+        _id: req.body.productid,
+        "questions.username": req.body.username,
+        "questions.question": req.body.question,
+      },
+      { $set: { "questions.$.answer": req.body.replytext } }
+    );
+    if (update) {
+      return res.json({ message: "Reply Added" });
+    }
   } catch (error) {
     return res.status(500).json({ err: error.message });
   }

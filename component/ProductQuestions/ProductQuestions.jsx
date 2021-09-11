@@ -4,11 +4,11 @@ import { showNotification } from "../../store/index";
 import { postProductQuestion } from "../../src/routes/productquestion";
 import { useRouter } from "next/dist/client/router";
 import EmptyEntry from "../Empty/EmptyEntry";
+import ProductQuestionsItem from "./ProductQuestionsItem";
 const ProductQuestions = ({ data }) => {
   const user = useSelector((state) => state.setUser);
   const [productdata, setProductData] = useState(data);
   const [showModal, setShowModal] = useState(false);
-  const [showReplyModal, setShowReplyModal] = useState(false);
   const [question, setQuestion] = useState("");
   const [reply, setReply] = useState("");
   const dispatch = useDispatch();
@@ -49,13 +49,6 @@ const ProductQuestions = ({ data }) => {
     setProductData(response.product);
   };
 
-  // reply questions
-  const replyQuestion = (e, userid, username, question) => {
-    setShowReplyModal(true);
-    const productid = data._id;
-    console.log(userid, username, question, productid);
-  };
-
   return (
     <div className="product_questions">
       {/* ask questions  */}
@@ -72,67 +65,11 @@ const ProductQuestions = ({ data }) => {
         )}
         {productdata.questions.reverse().map((item) => {
           return (
-            <div key={item._id} className="question_box">
-              <p className="question">
-                Question : <span>{item.question}</span>
-                {/* show button only if user is admin */}
-                {user.role === "admin" && (
-                  <button
-                    onClick={() =>
-                      replyQuestion(item.userid, item.username, item.question)
-                    }
-                    className="question_reply_button"
-                  >
-                    Reply
-                  </button>
-                )}
-              </p>
-
-              <p className="answer">
-                Answer :{" "}
-                <span>
-                  {item.answer === ""
-                    ? item.userid === user._id
-                      ? "Wait for the reply"
-                      : "No Reply yet"
-                    : item.answer}
-                </span>
-              </p>
-            </div>
+            <ProductQuestionsItem item={item} productid={productdata._id} />
           );
         })}
       </div>
 
-      {/* replymodal */}
-      {/* {showReplyModal ? (
-        <div className="replymodal">
-          <form>
-            <div className="reply">
-              <textarea
-                className="reply_input"
-                placeholder="Enter Reply here ..."
-                value={reply}
-                onChange={(e) => setReply(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="reply_action_button">
-              <button
-                onClick={() => setShowReplyModal(false)}
-                className="close"
-              >
-                Close
-              </button>
-              <button type="submit" className="submit">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      ) : (
-        ""
-      )} */}
-
-      {/* modal  */}
       {showModal ? (
         <div className="modal">
           <form onSubmit={submitQuestion}>

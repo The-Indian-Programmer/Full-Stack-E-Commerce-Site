@@ -70,9 +70,9 @@ const NavbarDropDown = ({ showDropDown, setShowDropDown }) => {
 
       <p onClick={() => dispatch(setTheme(!theme))} className="close_text">
         <span>
-          {theme ? <i class="fas fa-moon"></i> : <i class="fas fa-sun"></i>}
+          {theme ? <i class="fas fa-sun"></i> : <i class="fas fa-moon"></i>}
         </span>{" "}
-        {theme ? "Dark Mode" : "Light Mode"}
+        {theme ? "Light Mode" : "Dark Mode"}
       </p>
 
       <p onClick={() => setShowDropDown(!showDropDown)} className="close_text">
