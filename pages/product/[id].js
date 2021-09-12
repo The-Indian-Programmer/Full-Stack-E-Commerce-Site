@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { getProductById } from "../../src/routes/productData";
 import { getData } from "../../src/routes/userData";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../store/index";
+import { setProduct, setUser } from "../../store/index";
 import Head from "next/head";
 import { addToBasket } from "../../src/routes/userBasket";
 import { useSelector } from "react-redux";
@@ -13,10 +13,12 @@ import ReactStars from "react-rating-stars-component";
 
 import ProductReviews from "../../component/ProductReviews/ProductReviews";
 const ProductId = ({ data }) => {
+  const dispatch = useDispatch();
+  dispatch(setProduct(data.product));
+  const product = useSelector((state) => state.product);
   const user = useSelector((state) => state.setUser);
   const [tab, setTab] = useState(0);
   const cookie = Cookies.get("userAuth");
-  const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
   const [showTab, setShowTab] = useState(0);
@@ -40,8 +42,8 @@ const ProductId = ({ data }) => {
   };
 
   let productRating = 0;
-  for (let i = 0; i < data.product.reviews.length; i++) {
-    const element = data.product.reviews[i];
+  for (let i = 0; i < product.reviews.length; i++) {
+    const element = product.reviews[i];
     productRating = productRating + element.rating;
   }
 
@@ -83,13 +85,13 @@ const ProductId = ({ data }) => {
           <div className="images_container">
             <div className="image">
               <img
-                src={data.product.images ? data.product.images[tab].url : ""}
+                src={product.images ? product.images[tab].url : ""}
                 alt=""
                 className="product_image"
               />
             </div>
             <div className="image_slider">
-              {data.product.images.map((item, index) => {
+              {product.images.map((item, index) => {
                 return (
                   <img
                     key={index}
@@ -103,40 +105,38 @@ const ProductId = ({ data }) => {
             </div>
           </div>
           <div className="productdetail_container">
-            <h6 className="category_text">{data.product.category}</h6>
-            <h2 className="product_title">{data.product.title}</h2>
+            <h6 className="category_text">{product.category}</h6>
+            <h2 className="product_title">{product.title}</h2>
             <div className="description">
-              <p className="descriptiontext">{data.product.description}</p>
+              <p className="descriptiontext">{product.description}</p>
             </div>
             <div className="product_review">
-              <h3 className="review_text">3 Reviews</h3>
+              <h3 className="review_text">{product.reviews.length} Reviews</h3>
               <ReactStars
                 count={5}
                 edit={false}
                 size={24}
                 half={true}
-                value={productRating / data.product.reviews.length}
+                value={productRating / product.reviews.length}
                 activeColor="#ffd814"
               />
             </div>
             <div className="pricing">
               <p className="price">
-                &#8377; <span>{data.product.price}</span>
+                &#8377; <span>{product.price}</span>
               </p>
               <p className="originalprice">
-                &#8377; <span>{data.product.originalprice}</span>
+                &#8377; <span>{product.originalprice}</span>
               </p>
               <p className="priceoff">
-                Now{" "}
-                {(data.product.originalprice / data.product.price).toFixed(2)}%
-                off
+                Now {(product.originalprice / product.price).toFixed(2)}% off
               </p>
             </div>
             <div className="stock">
-              <p className="stocktext">{data.product.inStock} left in stock</p>
+              <p className="stocktext">{product.inStock} left in stock</p>
             </div>
             <div className="content">
-              <p className="content_text">{data.product.content}</p>
+              <p className="content_text">{product.content}</p>
             </div>
             <button onClick={() => addProductToBasket()} className="addtocart">
               Add To Cart
@@ -162,9 +162,9 @@ const ProductId = ({ data }) => {
         </div>
         <div className="tab_container">
           {showTab === 0 ? (
-            <ProductReviews data={data.product} />
+            <ProductReviews data={product} />
           ) : showTab === 1 ? (
-            <ProductQuestions data={data.product} />
+            <ProductQuestions data={product} />
           ) : (
             ""
           )}

@@ -3,7 +3,7 @@ import setUser from "./AuthReducer";
 import basket from "./BasketReducer";
 import category from "./CategoryReducer";
 import searchCategory from "./SearchCategoryReducer";
-import theme from "./ThemeReducer";
+import product from "./ProductReducer";
 import { combineReducers } from "redux";
 const rootReducer = combineReducers({
   show,
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   basket,
   category,
   searchCategory,
-  theme,
+  product,
 });
 
 export default rootReducer;

@@ -10,7 +10,6 @@ const ProductQuestions = ({ data }) => {
   const [productdata, setProductData] = useState(data);
   const [showModal, setShowModal] = useState(false);
   const [question, setQuestion] = useState("");
-  const [reply, setReply] = useState("");
   const dispatch = useDispatch();
   // submit question
   const router = useRouter();

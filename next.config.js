@@ -23,4 +23,3 @@ module.exports = {
       "EG_Yl8jL-w5OFOsWrpRnGWhPe78Gy22andvkgeOZwq6MYYLT2-fqwmEMaHlnYFysUAE52nW2vkKI9joG",
   },
 };
-// https://<API_KEY>:<API_SECRET>@api.cloudinary.com/v1_1/<CLOUD_NAME>/resources/image

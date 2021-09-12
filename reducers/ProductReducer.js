@@ -1,7 +1,7 @@
-const initialState = false;
-const theme = (state = initialState, action) => {
+const initialState = {};
+const product = (state = initialState, action) => {
   switch (action.type) {
-    case "SETTHEME":
+    case "SETPRODUCT":
       state = action.payload;
       return state;
       break;
@@ -11,4 +11,4 @@ const theme = (state = initialState, action) => {
       break;
   }
 };
-export default theme;
+export default product;

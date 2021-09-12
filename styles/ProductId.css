@@ -185,7 +185,7 @@
   position: relative;
   cursor: pointer;
   transition: all 0.5s;
-  margin-bottom: 5px solid var(--secondary-text-color);
+  border-bottom: 5px solid var(--secondary-text-color);
 }
 .product_info_tabs .tab_header p:hover {
   background-color: rgba(0, 0, 0, 0.1);

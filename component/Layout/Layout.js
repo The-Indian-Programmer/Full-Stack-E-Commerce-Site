@@ -5,15 +5,20 @@ import Notification from "../Notification/Notification";
 import { toast, ToastContainer } from "react-toastify";
 import Footer from "../Footer/Footer";
 const Layout = ({ children }) => {
-  const show = useSelector((state) => state.show);
   const theme = useSelector((state) => state.theme);
-
+  const user = useSelector((state) => state.setUser);
   return (
     <>
-      <Navbar />
+      {Object.keys(user).length !== 0 ? <Navbar /> : ""}
       <Notification />
-      <div className={`main_page ${theme ? "dark" : "light"}`}>{children}</div>
-      <Footer />
+
+      <div
+        style={{ minHeight: "100vh" }}
+        className={`main_page ${theme ? "dark" : "light"}`}
+      >
+        {children}
+      </div>
+      {Object.keys(user).length !== 0 ? <Footer /> : ""}
     </>
   );
 };

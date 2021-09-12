@@ -4,12 +4,6 @@ export const showNotification = (data) => {
     payload: data,
   };
 };
-export const setTheme = (data) => {
-  return {
-    type: "SETTHEME",
-    payload: data,
-  };
-};
 
 export const setUser = (data) => {
   return { type: "SETUSER", payload: data };
@@ -65,6 +59,13 @@ export const deleteCategory = (data) => {
 export const editCategory = (data) => {
   return {
     type: "EDITCATEGORY",
+    payload: data,
+  };
+};
+
+export const setProduct = (data) => {
+  return {
+    type: "SETPRODUCT",
     payload: data,
   };
 };

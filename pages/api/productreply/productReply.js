@@ -18,19 +18,23 @@ export default async (req, res) => {
 };
 
 const addproductreply = async (req, res) => {
+  console.log(req.body);
   try {
-    console.log(req.body);
     const update = await productSchema.updateOne(
       {
         _id: req.body.productid,
-        "questions.username": req.body.username,
         "questions.question": req.body.question,
       },
       { $set: { "questions.$.answer": req.body.replytext } }
     );
     if (update) {
+      const product = await productSchema.findById(req.body.productid);
+      if (product) {
+        return res.json({ message: "Reply Added", product: product });
+      }
       return res.json({ message: "Reply Added" });
     }
+    return res.json({ err: "Something went wrong" });
   } catch (error) {
     return res.status(500).json({ err: error.message });
   }

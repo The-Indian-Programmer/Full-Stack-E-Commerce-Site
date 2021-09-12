@@ -1,7 +1,6 @@
 import React from "react";
 
 const ProfileUserInfo = ({ data }) => {
-  console.log(data);
   return (
     <div className="profile_info">
       <div className="image">

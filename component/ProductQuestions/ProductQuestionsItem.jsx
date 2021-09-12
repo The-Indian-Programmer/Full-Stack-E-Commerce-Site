@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postProductReply } from "../../src/routes/productreply";
-import { showNotification } from "../../store/index";
+import { setProduct, showNotification } from "../../store/index";
 const ProductQuestionsItem = ({ item, productid }) => {
   const user = useSelector((state) => state.setUser);
   const [showReplyModal, setShowReplyModal] = useState(false);
@@ -21,6 +21,7 @@ const ProductQuestionsItem = ({ item, productid }) => {
       productid,
       reply
     );
+    console.log(response);
     if (response.err) {
       return dispatch(
         showNotification({
@@ -35,6 +36,9 @@ const ProductQuestionsItem = ({ item, productid }) => {
         data: { message: response.message, type: "success" },
       })
     );
+    dispatch(setProduct(response.product));
+    setReply("");
+    setShowReplyModal(false);
   };
 
   return (

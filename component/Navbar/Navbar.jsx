@@ -14,9 +14,6 @@ const Navbar = ({ children }) => {
   const [search, setSearch] = useState("");
   const [showDropDown, setShowDropDown] = useState(false);
   const dispatch = useDispatch();
-  const signOut = () => {
-    Cookies.remove("userAuth");
-  };
   useEffect(async () => {
     const response = await getCategories("category/getcategory");
     if (response.err)
@@ -77,7 +74,7 @@ const Navbar = ({ children }) => {
       <div className="header_right">
         <Link href="/cart">
           <div className="cart">
-            <i class="fas fa-shopping-cart shopping_icon"></i>
+            <i className="fas fa-shopping-cart shopping_icon"></i>
             <span className="cart_count">
               {user.basket ? user.basket.length : "0"}
             </span>

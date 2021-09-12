@@ -25,23 +25,7 @@ body {
   --web-font: "Titillium Web", sans-serif;
   --dancing-font: "Dancing Script", cursive;
 }
-.dark {
-  --primary-color: #ffd814;
-  --main-color: #252525;
-  --main-hover-color: #363636;
-  --secondary-color: #252525;
-  --link-color: #3700ff;
-  --text-link-color: #00ff00;
-  --primary-text-color: rgb(255, 255, 255);
-  --secondary-text-color: rgb(34, 34, 34);
-  --gray-text-color: rgb(226, 226, 226);
-  --box-shadow: #ddd;
-  --button-color: #24e452;
-  --button-hover-color: #23d9c3;
-  --roboto-font: "Roboto", sans-serif;
-  --web-font: "Titillium Web", sans-serif;
-  --dancing-font: "Dancing Script", cursive;
-}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -53,15 +37,7 @@ body::-webkit-scrollbar {
     margin-top: 6.71rem;
   }
 }
-/* .dark-theme {
-  --primary-color: #ffd814;
-  --main-color: #febd69;
-  --main-hover-color: #ffaa33;
-  --secondary-color: #232f3e;
-  --link-color: #016eff;
-  --text-color: #000;
-} */
-
+@import url("../component/Layout/Layout.css");
 @import url("./Index.css");
 @import url("../component/Footer/Footer.css");
 @import url("../component/SignInPage/SignIn.css");
@@ -79,6 +55,7 @@ body::-webkit-scrollbar {
 @import url("../component/ProductQuestions/ProductQuestions.css");
 @import url("../component/ProductReviews/ProductReviews.css");
 @import url("../component/CartItem/CartItem.css");
+@import url("../component/FooterBanner/FooterBanner.css");
 /* product_detail_page [id].js  */
 
 /* /////////////// products page of admin  */

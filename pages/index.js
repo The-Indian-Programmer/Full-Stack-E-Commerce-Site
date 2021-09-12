@@ -12,6 +12,7 @@ import { searchCategory } from "../store";
 import { getProductData } from "../src/routes/productData";
 import Banner from "../component/Banner/Banner";
 import PrimeProducts from "../component/PrimeProducts/PrimeProducts";
+import FooterBanner from "../component/FooterBanner/FooterBanner";
 function Home({ data }) {
   const dispatch = useDispatch();
   const cookie = Cookies.get("userAuth");
@@ -47,6 +48,7 @@ function Home({ data }) {
           <PrimeProducts data={data} />
           <Homes data={data} />
         </div>
+        <FooterBanner />
       </main>
     </div>
   );

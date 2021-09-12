@@ -126,7 +126,7 @@
   position: fixed;
   right: 20px;
   top: 80px;
-  background-color: var(--secondary-text-color);
+  background: var(--main-color);
   box-shadow: 0 0 10px var(--secondary-color);
   padding: 10px;
   border-radius: 5px;
@@ -138,15 +138,16 @@
 .header .header_right .profile .profile_option p {
   width: 100%;
   padding: 10px 5px;
-  color: var(--main-color);
+  color: var(--secondary-text-color);
   cursor: pointer;
   transition: all 0.5s;
   margin-top: 5px;
   border-radius: 5px;
+  background: var(--main-color);
 }
 .header .header_right .profile .profile_option p:hover {
-  color: var(--secondary-text-color);
-  background-color: var(--main-color);
+  color: var(--main-color);
+  background: var(--secondary-text-color);
 }
 .header .header_right .profile .profile_option p span {
   margin-right: 10px;

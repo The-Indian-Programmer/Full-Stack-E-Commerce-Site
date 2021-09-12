@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserReviews = () => {
-  return <div>userreview</div>;
+const UserReviews = ({ orderdata }) => {
+  return <div className="user_reviews"></div>;
 };
 
 export default UserReviews;

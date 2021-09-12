@@ -21,6 +21,18 @@ export const getUserOrders = async (url, email) => {
   const data = await res.json();
   return data;
 };
+export const changeDeliveryStatus = async (url, userid, orderid) => {
+  const res = await fetch(`${baseurl}/api/${url}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userid, orderid }),
+  });
+
+  const data = await res.json();
+  return data;
+};
 // export const deleteCategories = async (url, id) => {
 //   const res = await fetch(`${baseurl}/api/${url}`, {
 //     method: "DELETE",
