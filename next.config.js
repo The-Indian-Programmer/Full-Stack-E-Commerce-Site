@@ -19,7 +19,7 @@ module.exports = {
     CLOUD_API: "https://api.cloudinary.com/v1_1/sumitkosta/image/upload",
     PAYPAL_CLIENT_ID:
       "AYkeSfjbUKZmWg-pJ3RpHW95QWSKtX5ItvCPBSPZ7hEfU4n7zovEJHIf5ZLu1FydD0SN9NV-5s48ZSSB",
-    PAYPAL_CLIENT_SECET:
-      "EG_Yl8jL-w5OFOsWrpRnGWhPe78Gy22andvkgeOZwq6MYYLT2-fqwmEMaHlnYFysUAE52nW2vkKI9joG",
+    // PAYPAL_CLIENT_SECET:
+    //   "EG_Yl8jL-w5OFOsWrpRnGWhPe78Gy22andvkgeOZwq6MYYLT2-fqwmEMaHlnYFysUAE52nW2vkKI9joG",
   },
 };
