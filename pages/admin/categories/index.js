@@ -6,9 +6,11 @@ import {
   updateCategories,
 } from "../../../src/routes/category";
 import Head from "next/dist/shared/lib/head";
+import { showNotification } from "../../../store/index";
+import { useDispatch } from "react-redux";
 const Categories = ({ data }) => {
   const [name, setName] = useState("");
-
+  const dispatch = useDispatch();
   const categorySubmit = async (e) => {
     e.preventDefault();
     const res = await createCategories(
@@ -16,8 +18,12 @@ const Categories = ({ data }) => {
       name.toLowerCase()
     );
     if (res.err) {
-      alert(res.err);
-      return;
+      return dispatch(
+        showNotification({
+          show: true,
+          data: { message: res.err, type: "error" },
+        })
+      );
     }
   };
   const handleChange = (e) => {
@@ -30,22 +36,40 @@ const Categories = ({ data }) => {
       id
     );
     if (deleteResponse.err) {
-      alert(deleteResponse.err);
-      return;
+      return dispatch(
+        showNotification({
+          show: true,
+          data: { message: deleteResponse.err, type: "error" },
+        })
+      );
     }
-    alert("Category Deleted");
+    dispatch(
+      showNotification({
+        show: true,
+        data: { message: "Category Deleted", type: "success" },
+      })
+    );
   };
   const updateCategory = async (id) => {
     const newName = prompt("Updated Name");
-    console.log(newName);
     const updateResponse = await updateCategories("category/updatecategory", {
       id: id,
       name: newName.toLowerCase(),
     });
     if (updateResponse.err) {
-      alert(updateResponse.err);
-      return;
+      return dispatch(
+        showNotification({
+          show: true,
+          data: { message: updateResponse.err, type: "error" },
+        })
+      );
     }
+    dispatch(
+      showNotification({
+        show: true,
+        data: { message: "Category Updated", type: "success" },
+      })
+    );
   };
   return (
     <>
@@ -57,7 +81,6 @@ const Categories = ({ data }) => {
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous"
         />
       </Head>
       <main className="createcategories">

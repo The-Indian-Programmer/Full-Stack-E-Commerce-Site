@@ -5,6 +5,7 @@ import {
   removeFromBasket,
   increaseProduct,
   decreaseProduct,
+  showNotification,
 } from "../../src/routes/userBasket";
 import { removeFromCart, setUser } from "../../store/index";
 const CartItem = ({ item }) => {
@@ -16,7 +17,12 @@ const CartItem = ({ item }) => {
       userId: user._id,
     });
     if (res.err) {
-      alert(res.err);
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: res.err, type: "error" },
+        })
+      );
       return;
     }
     dispatch(setUser(res.userdata));
@@ -27,7 +33,12 @@ const CartItem = ({ item }) => {
       userId: user._id,
     });
     if (res.err) {
-      alert(res.err);
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: res.err, type: "error" },
+        })
+      );
       return;
     }
     dispatch(setUser(res.userdata));
@@ -38,7 +49,12 @@ const CartItem = ({ item }) => {
       userId: user._id,
     });
     if (response.err) {
-      alert(response.err);
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: response.err, type: "error" },
+        })
+      );
       return;
     }
     dispatch(setUser(response.userdata));

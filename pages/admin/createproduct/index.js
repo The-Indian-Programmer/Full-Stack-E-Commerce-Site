@@ -9,9 +9,11 @@ import { getCategories } from "../../../src/routes/category";
 import { imageUpload } from "../../api/upload/imageUpload";
 import { postProductData } from "../../../src/routes/productData";
 import ButtonLoader from "../../../component/ButtonLoader/ButtonLoader";
+
 const CreateProduct = ({ data }) => {
   const [images, setImages] = useState([]);
   const [btnLoading, setBtnLoading] = useState(false);
+  const dispatch = useDispatch();
   const [inputData, setInputData] = useState({
     title: "",
     price: "",
@@ -24,7 +26,6 @@ const CreateProduct = ({ data }) => {
   });
   const router = useRouter();
   const cookie = Cookies.get("userAuth");
-  const dispatch = useDispatch();
   useEffect(() => {
     if (cookie === undefined) {
       router.push("/signin");
@@ -87,25 +88,44 @@ const CreateProduct = ({ data }) => {
     let newImages = [];
     const files = [...e.target.files];
     if (files.length === 0) {
-      alert("Files do not exist.");
-      return;
+      return dispatch(
+        showNotification({
+          show: true,
+          data: { message: "File do not exist.", type: "error" },
+        })
+      );
     }
     files.forEach((file) => {
       if (file.size > 1024 * 1024) {
-        alert("Largest file size is 1Mb");
-        return;
+        return dispatch(
+          showNotification({
+            show: true,
+            data: { message: "Largest File Size is 1Mb", type: "error" },
+          })
+        );
       }
       if (file.type !== "image/jpeg" && file.type !== "image/png") {
-        alert("Image format is incorrect");
-        return;
+        return dispatch(
+          showNotification({
+            show: true,
+            data: { message: "Image Format is incorrect.", type: "error" },
+          })
+        );
       }
       newImages.push(file);
       return newImages;
     });
     const imagecount = images.length + newImages.length;
     if (imagecount > 6) {
-      alert("Images shound not be greater than 6");
-      return;
+      return dispatch(
+        showNotification({
+          show: true,
+          data: {
+            message: "Images should not be greater than 6.",
+            type: "error",
+          },
+        })
+      );
     }
     setImages([...images, ...newImages]);
   };
@@ -126,7 +146,6 @@ const CreateProduct = ({ data }) => {
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous"
         />
       </Head>
       <main className="create_product">
@@ -246,7 +265,6 @@ const CreateProduct = ({ data }) => {
                   <img
                     src={file.url ? file.url : URL.createObjectURL(file)}
                     alt=""
-                    srcset=""
                   />
                   <span onClick={() => removeImage(index)} className="close">
                     X

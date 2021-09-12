@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { addToCart, setUser } from "../../store/index";
+import { addToCart, setUser, showNotification } from "../../store/index";
 import { useSelector, useDispatch } from "react-redux";
 import { addToBasket } from "../../src/routes/userBasket";
 import { useRouter } from "next/router";
@@ -26,13 +26,26 @@ const ProductItem = ({ data }) => {
       });
       if (res.err) {
         setBtnLoading(false);
-        return alert(res.err);
+        return dispatch(
+          showNotification({
+            show: true,
+            data: {
+              message: "Item is already in your basket.",
+              type: "warning",
+            },
+          })
+        );
       }
       dispatch(setUser(res.userdata));
       setBtnLoading(false);
     } else {
       setBtnLoading(false);
-      return alert("Item is already is in your basket");
+      return dispatch(
+        showNotification({
+          show: true,
+          data: { message: res.err, type: "error" },
+        })
+      );
     }
   };
   return (
@@ -58,7 +71,7 @@ const ProductItem = ({ data }) => {
           <span className="totalreview">(20)</span>
         </div>
         <div className="pricing">
-          <h4 className="price">$ {data.price}.00</h4>
+          <h4 className="price">&#8377; {data.price}.00</h4>
           <h5 className="originalprice">$ {data.originalprice}</h5>
         </div>
         <div className="stock">
@@ -105,7 +118,7 @@ const ProductItem = ({ data }) => {
       </div>
 
       <div className="discount">
-        Save <span>$ {data.originalprice - data.price}</span>
+        Save <span>&#8377; {data.originalprice - data.price}</span>
       </div>
       {data.checked ? <div className="flash">Flash Sale</div> : ""}
     </div>

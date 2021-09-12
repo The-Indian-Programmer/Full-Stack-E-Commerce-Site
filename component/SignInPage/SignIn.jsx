@@ -5,10 +5,13 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/dist/client/router";
 import { useSelector, useDispatch } from "react-redux";
 import setUser from "../../reducers/AuthReducer";
+import { showNotification } from "../../store/index";
 const SignInPage = () => {
   const user = useSelector((state) => state.setUser);
   const cookie = Cookies.get("userAuth");
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -28,7 +31,12 @@ const SignInPage = () => {
     e.preventDefault();
     const res = await postData("auth/signin", data);
     if (res.err) {
-      alert(res.err);
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: res.err, type: "error" },
+        })
+      );
       return;
     }
     Cookies.set("userAuth", res.data.tokens[0].token, { expires: 7 });

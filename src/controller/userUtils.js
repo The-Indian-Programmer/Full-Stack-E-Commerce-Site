@@ -5,7 +5,7 @@ const valid = (name, email, password, cpassword) => {
   if (!validateEmail(email)) {
     return "Invalid Email";
   }
-  if (password.length < 1) {
+  if (password.length < 6) {
     return "Password must be at least 1 character";
   }
   if (password !== cpassword) {

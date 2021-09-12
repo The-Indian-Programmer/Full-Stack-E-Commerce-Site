@@ -129,7 +129,6 @@ const EditProduct = ({ data }) => {
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous"
         />
       </Head>
       <main className="container">
@@ -246,7 +245,6 @@ const EditProduct = ({ data }) => {
                   <img
                     src={img.url ? img.url : URL.createObjectURL(img)}
                     alt=""
-                    srcset=""
                   />
                   <span onClick={() => removeImage(index)} className="close">
                     X

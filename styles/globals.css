@@ -27,8 +27,17 @@ body {
 }
 
 body::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
+  width: 10px;
 }
+body::-webkit-scrollbar-track {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+}
+
 .main_page {
   margin-top: 4.4rem;
 }

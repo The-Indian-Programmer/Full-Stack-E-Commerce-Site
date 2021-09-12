@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { getProductById } from "../../src/routes/productData";
 import { getData } from "../../src/routes/userData";
 import { useDispatch } from "react-redux";
-import { setProduct, setUser } from "../../store/index";
+import { setProduct, setUser, showNotification } from "../../store/index";
 import Head from "next/head";
 import { addToBasket } from "../../src/routes/userBasket";
 import { useSelector } from "react-redux";
@@ -30,8 +30,12 @@ const ProductId = ({ data }) => {
     }
 
     if (data.err) {
-      alert(data.err);
-      return;
+      return dispatch(
+        showNotification({
+          show: true,
+          data: { message: data.err, type: "error" },
+        })
+      );
     }
   }, []);
 
@@ -58,12 +62,27 @@ const ProductId = ({ data }) => {
         data: { ...data.product, quantity: 1 },
       });
       if (res.err) {
-        alert(res.err);
+        return dispatch(
+          showNotification({
+            show: true,
+            data: { message: res.err, type: "error" },
+          })
+        );
       }
       dispatch(setUser(res.userdata));
-      alert("Item added");
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: "Item Added", type: "success" },
+        })
+      );
     } else {
-      alert("Item is already is in your basket");
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: "Item is already in your basket.", type: "warning" },
+        })
+      );
     }
   };
   return (
@@ -76,7 +95,6 @@ const ProductId = ({ data }) => {
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous"
         />
       </Head>
       <>

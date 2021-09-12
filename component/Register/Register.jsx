@@ -4,8 +4,11 @@ import valid from "../../src/controller/userUtils";
 import Cookies from "js-cookie";
 import { postData } from "../../src/routes/userData";
 import { useRouter } from "next/dist/client/router";
+import { useDispatch } from "react-redux";
+import { showNotification } from "../../store/index";
 const RegisterPage = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -22,7 +25,12 @@ const RegisterPage = () => {
     e.preventDefault();
     const res = await postData("auth/register", data);
     if (res.err) {
-      alert(res.err);
+      dispatch(
+        showNotification({
+          show: true,
+          data: { message: res.err, type: "error" },
+        })
+      );
       return;
     }
     Cookies.set("userAuth", res.data.tokens[0].token, { expires: 7 });
