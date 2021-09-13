@@ -57,8 +57,8 @@ const Cart = () => {
                 ""
               )} */}
               {/* cart-item  */}
-              {user.basket.map((item) => {
-                return <CartItem item={item} />;
+              {user.basket.map((item, index) => {
+                return <CartItem key={index} item={item} />;
               })}
             </div>
             <div className="checkout">

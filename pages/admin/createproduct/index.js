@@ -212,7 +212,6 @@ const CreateProduct = ({ data }) => {
             <label htmlFor="category">Choose Category</label>
             <select
               name="category"
-              name="category"
               id="category"
               value={inputData.category}
               onChange={handleChange}

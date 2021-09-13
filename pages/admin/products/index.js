@@ -63,7 +63,7 @@ const Products = ({ product }) => {
           </tr>
           {productData.map((item, index) => {
             return (
-              <tr className="body">
+              <tr key={index} className="body">
                 <td>{index + 1}</td>
                 <td
                   onClick={() => router.push(`/product/${item._id}`)}
