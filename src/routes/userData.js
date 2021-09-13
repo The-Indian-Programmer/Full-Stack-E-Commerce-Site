@@ -1,5 +1,4 @@
-// const baseurl = process.env.BASE_URL;
-const baseurl = "https://full-stack-e-commerce-site.vercel.app";
+const baseurl = process.env.BASE_URL;
 export const getData = async (url, token) => {
   const res = await fetch(`${baseurl}/api/${url}`, {
     method: "GET",
