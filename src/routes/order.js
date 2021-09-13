@@ -1,4 +1,6 @@
-const baseurl = process.env.BASE_URL;
+// const baseurl = process.env.BASE_URL;
+const baseurl = "https://full-stack-e-commerce-site.vercel.app";
+
 export const addOrder = async (url, user, userInfo, amount) => {
   const res = await fetch(`${baseurl}/api/${url}`, {
     method: "POST",
