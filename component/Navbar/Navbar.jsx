@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { getCategories } from "../../src/routes/category";
-import { showNotification } from "../../store";
+import { showNotification } from "../../store/index";
 import { useDispatch } from "react-redux";
 import { searchCategory, setCategory } from "../../store/index";
 import NavbarDropDown from "./NavbarDropDown";
