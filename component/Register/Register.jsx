@@ -6,7 +6,10 @@ import { postData } from "../../src/routes/userData";
 import { useRouter } from "next/dist/client/router";
 import { useDispatch } from "react-redux";
 import { showNotification } from "../../store/index";
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 const RegisterPage = () => {
+  const [btnLoading, setBtnLoading] = useState(false);
+
   const router = useRouter();
   const dispatch = useDispatch();
   const [data, setData] = useState({
@@ -23,8 +26,10 @@ const RegisterPage = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setBtnLoading(true);
     const res = await postData("auth/register", data);
     if (res.err) {
+      setBtnLoading(false);
       dispatch(
         showNotification({
           show: true,
@@ -33,6 +38,7 @@ const RegisterPage = () => {
       );
       return;
     }
+    setBtnLoading(false);
     Cookies.set("userAuth", res.data.tokens[0].token, { expires: 7 });
     router.push("/");
   };
@@ -86,7 +92,7 @@ const RegisterPage = () => {
             />
           </div>
           <button type="submit" className="btn_submit">
-            Register
+            {btnLoading ? <ButtonLoader /> : "Register"}
           </button>
           <p className="login_text">
             Already have an account <Link href="/signin">Login</Link>

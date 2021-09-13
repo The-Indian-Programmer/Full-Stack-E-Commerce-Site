@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+
 import {
   removeFromBasket,
   increaseProduct,
   decreaseProduct,
-  showNotification,
 } from "../../src/routes/userBasket";
-import { removeFromCart, setUser } from "../../store/index";
+import { removeFromCart, setUser, showNotification } from "../../store/index";
 const CartItem = ({ item }) => {
   const user = useSelector((state) => state.setUser);
   const dispatch = useDispatch();

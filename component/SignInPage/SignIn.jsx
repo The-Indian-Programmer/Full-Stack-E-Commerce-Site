@@ -4,14 +4,14 @@ import { postData, getData } from "../../src/routes/userData";
 import Cookies from "js-cookie";
 import { useRouter } from "next/dist/client/router";
 import { useSelector, useDispatch } from "react-redux";
-import setUser from "../../reducers/AuthReducer";
 import { showNotification } from "../../store/index";
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 const SignInPage = () => {
   const user = useSelector((state) => state.setUser);
   const cookie = Cookies.get("userAuth");
   const router = useRouter();
   const dispatch = useDispatch();
-
+  const [btnloading, setBtnloading] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -29,8 +29,10 @@ const SignInPage = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setBtnloading(true);
     const res = await postData("auth/signin", data);
     if (res.err) {
+      setBtnloading(false);
       dispatch(
         showNotification({
           show: true,
@@ -39,6 +41,7 @@ const SignInPage = () => {
       );
       return;
     }
+    setBtnloading(false);
     Cookies.set("userAuth", res.data.tokens[0].token, { expires: 7 });
     router.push("/");
   };
@@ -70,7 +73,7 @@ const SignInPage = () => {
             />
           </div>
           <button type="submit" className="btn_submit">
-            Login
+            {btnloading ? <ButtonLoader /> : "Login"}
           </button>
           <p className="register_text">
             Don't have an account <Link href="/register">Create One</Link>

@@ -42,7 +42,6 @@ const Products = ({ product }) => {
         <link
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
         />
       </Head>
       <main className="products_page">
@@ -67,7 +66,7 @@ const Products = ({ product }) => {
               <tr className="body">
                 <td>{index + 1}</td>
                 <td
-                  onClick={() => router.push(`product/${item._id}`)}
+                  onClick={() => router.push(`/product/${item._id}`)}
                   className="product_title"
                 >
                   {item.title.toUpperCase()}

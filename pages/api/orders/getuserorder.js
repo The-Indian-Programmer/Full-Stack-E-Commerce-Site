@@ -14,6 +14,11 @@ export default async (req, res) => {
 const getuserorders = async (req, res) => {
   const id = req.headers.authorization;
   try {
+    const user = await userSchema.findById(id);
+    if (user.role === "admin") {
+      const UserOrders = await orderSchema.find();
+      return res.json({ data: UserOrders, message: "Data Found" });
+    }
     const userOrders = await orderSchema.find({ userid: id });
     if (userOrders) {
       return res.json({ data: userOrders, message: "Data Found" });

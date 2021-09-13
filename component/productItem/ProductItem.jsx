@@ -30,7 +30,7 @@ const ProductItem = ({ data }) => {
           showNotification({
             show: true,
             data: {
-              message: "Item is already in your basket.",
+              message: res.err,
               type: "warning",
             },
           })
@@ -43,7 +43,7 @@ const ProductItem = ({ data }) => {
       return dispatch(
         showNotification({
           show: true,
-          data: { message: res.err, type: "error" },
+          data: { message: "Item is already in your basket.", type: "warning" },
         })
       );
     }

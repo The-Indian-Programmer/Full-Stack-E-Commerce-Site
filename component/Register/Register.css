@@ -97,7 +97,7 @@
   padding: 10px 0px;
   width: 100%;
   background-color: var(--main-color);
-  color: black;
+  color: var(--secondary-text-color);
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;

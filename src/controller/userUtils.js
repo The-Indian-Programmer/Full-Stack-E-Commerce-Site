@@ -6,7 +6,7 @@ const valid = (name, email, password, cpassword) => {
     return "Invalid Email";
   }
   if (password.length < 6) {
-    return "Password must be at least 1 character";
+    return "Password must be at least 6 character";
   }
   if (password !== cpassword) {
     return "Password do not match";

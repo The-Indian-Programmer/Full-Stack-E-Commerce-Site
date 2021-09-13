@@ -11,7 +11,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
-    "cloudinary": "^1.26.3",
     "cors": "^2.8.5",
     "firebase": "^9.0.0",
     "js-cookie": "^3.0.0",
@@ -20,7 +19,6 @@
     "next": "11.1.0",
     "nextjs-cors": "^1.0.6",
     "react": "17.0.2",
-    "react-data-table-component": "^6.11.8",
     "react-dom": "17.0.2",
     "react-multi-carousel": "^2.6.5",
     "react-rating-stars-component": "^2.2.0",

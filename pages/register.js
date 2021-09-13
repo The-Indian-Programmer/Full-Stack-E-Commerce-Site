@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/dist/shared/lib/head";
 import RegisterPage from "../component/Register/Register";
 const Register = () => {
@@ -11,7 +11,6 @@ const Register = () => {
         <link
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
         />
       </Head>
       <main>

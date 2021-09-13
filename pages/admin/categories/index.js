@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   createCategories,
   deleteCategories,
@@ -6,10 +6,13 @@ import {
   updateCategories,
 } from "../../../src/routes/category";
 import Head from "next/dist/shared/lib/head";
-import { showNotification } from "../../../store/index";
+import { setUser, showNotification } from "../../../store/index";
 import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import { getData } from "../../../src/routes/userData";
 const Categories = ({ data }) => {
   const [name, setName] = useState("");
+  const cookie = Cookies.get("userAuth");
   const dispatch = useDispatch();
   const categorySubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +28,17 @@ const Categories = ({ data }) => {
         })
       );
     }
+  };
+  useEffect(() => {
+    if (cookie === undefined) {
+      router.push("/signin");
+    } else {
+      setUserInRedux();
+    }
+  }, []);
+  const setUserInRedux = async () => {
+    const response = await getData("auth/getuser", cookie);
+    dispatch(setUser(response.data));
   };
   const handleChange = (e) => {
     setName(e.target.value);
@@ -80,7 +94,6 @@ const Categories = ({ data }) => {
         <link
           rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
         />
       </Head>
       <main className="createcategories">
