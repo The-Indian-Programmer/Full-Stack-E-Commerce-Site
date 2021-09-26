@@ -65,6 +65,7 @@ body::-webkit-scrollbar-thumb {
 @import url("../component/ProductReviews/ProductReviews.css");
 @import url("../component/CartItem/CartItem.css");
 @import url("../component/FooterBanner/FooterBanner.css");
+@import url("../component/GlobalLoader/GlobalLoader.css");
 /* product_detail_page [id].js  */
 
 /* /////////////// products page of admin  */
@@ -230,17 +231,18 @@ body::-webkit-scrollbar-thumb {
 
 /* ///////// create product  */
 .create_product {
-  padding-top: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: white;
-  height: 100vh;
 }
 .create_product form {
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
   height: 100%;
+  width: 80%;
   padding: 10px;
 }
 .create_product form > div {
@@ -313,144 +315,130 @@ body::-webkit-scrollbar-thumb {
 .create_product form .btn_create_product {
   height: 40px;
   width: 100%;
-  border: 2px solid black;
+  border: none;
   background: var(--main-color);
   margin-top: 20px;
   cursor: pointer;
+  color: white;
 }
 .create_product .image_container {
   height: 100%;
   width: 100%;
-  max-width: 500px;
-  display: block;
-  margin: auto;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
-.create_product .image_container .featured_image_box {
-  padding: 10px;
-  border-radius: 5px;
+.create_product .image_container .head {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-.create_product .image_container .featured_image_box .featured_image {
+.create_product .image_container .left_arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%);
+  left: 20px;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.create_product .image_container .productImage {
   height: 200px;
-  width: 100%;
-  object-fit: contain;
-  transform: scale(1);
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.5s;
   cursor: pointer;
 }
-.create_product .image_container .featured_image:hover {
-  transform: scale(0.9);
+.create_product .image_container .productImage:hover {
+  transform: scale(1.1);
 }
-.create_product .image_container .image_input {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 40px;
-  width: 100%;
-  margin-bottom: 1rem;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-}
-.create_product .image_container .image_input label {
-  margin-right: 10px;
-  height: 100%;
-  background: #ccc;
-  flex-basis: 20%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  cursor: pointer;
-}
-.create_product .image_container .image_input input {
-  flex-basis: 80%;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  display: none;
-  cursor: pointer;
-}
-/* .create_product .image_container .thumbnailimage {
-  width: 90%;
-  height: 250px;
-  border-radius: 5px;
-  display: block;
-  margin: auto;
-  position: relative;
-}
-.create_product .image_container .thumbnailimage img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 5px;
-} */
-.create_product .image_container .thumbnailimage span {
+.create_product .image_container .right_arrow {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  height: 40px;
-  width: 40px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: black;
-  color: white;
+  top: 50%;
+  transform: translateX(-50%);
+  right: 20px;
+  height: 20px;
+  width: 20px;
   cursor: pointer;
-  border-radius: 50%;
-  box-shadow: 0 0 5px #ccc;
 }
 .create_product .image_container .images {
-  width: 100%;
-  height: 150px;
+  width: 80%;
+  margin: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
+  height: 200px;
+  overflow-y: hidden;
   overflow-x: scroll;
-  margin-top: 1rem;
+}
+.create_product .image_container .images::-webkit-scrollbar {
+  height: 5px;
+}
+.create_product .image_container .images::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.create_product .image_container .images::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 .create_product .image_container .images .image {
-  position: relative;
-  height: 100px;
-  width: 150px;
+  height: 150px;
+  width: 200px;
+  margin-left: 10px;
   border-radius: 5px;
-  margin-right: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  border: 1px dotted black;
+  padding: 10px;
 }
 .create_product .image_container .images .image img {
-  max-width: 150px;
-  max-height: 90px;
-  border-radius: 5px;
-  margin-right: 5px;
-  transition: all 0.5s;
+  width: 180px;
+  height: 130px;
   object-fit: contain;
-  transform: scale(0.8);
+  border-radius: 5px;
+  cursor: pointer;
 }
-.create_product .image_container .images .image.active {
-  box-shadow: 0 0 10px #ddd;
-}
-.create_product .image_container .images .image img:hover {
-  transform: scale(0.5);
-}
-.create_product .image_container .images .image .close {
+.create_product .image_container .images .image span {
   position: absolute;
   top: 5px;
   right: 5px;
   height: 20px;
   width: 20px;
-  font-size: 0.7rem;
-  cursor: pointer;
-  background: #000;
+  font-size: 0.8rem;
+  background-color: black;
   color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.create_product .image_container .images .image_input {
+  height: 150px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  border: 1px dotted;
+  border-radius: 5px;
+}
+.create_product .image_container .images .image_input input {
+  display: none;
+}
+.create_product .image_container .images .image_input label {
+  width: 200px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: gray;
 }

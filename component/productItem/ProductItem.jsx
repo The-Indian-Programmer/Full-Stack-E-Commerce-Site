@@ -95,7 +95,7 @@ const ProductItem = ({ data }) => {
                 data.inStock < 5
                   ? "red"
                   : data.inStock < 15
-                  ? "yellow"
+                  ? "#928700"
                   : "green"
               }`,
             }}

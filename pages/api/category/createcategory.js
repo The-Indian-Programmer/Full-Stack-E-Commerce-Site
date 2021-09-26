@@ -25,8 +25,9 @@ const createcategory = async (req, res) => {
       name,
     });
     const categorySave = await newCategory.save();
+    const categories = await categorySchema.find();
     if (categorySave) {
-      return res.status(201).json({ message: "Category created" });
+      return res.status(201).json({ message: "Category created", categories });
     }
     return res.json({ err: "Some Error Found" });
   } catch (err) {

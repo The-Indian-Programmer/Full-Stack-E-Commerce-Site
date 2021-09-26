@@ -1,0 +1,27 @@
+.global_loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.global_loader div {
+  height: 100px;
+  width: 100px;
+  border: 10px solid rgb(255, 255, 255);
+  border-top: 10px solid blue;
+  border-bottom: 10px solid blue;
+  border-radius: 50%;
+  animation: rotategloballoader 1s linear infinite;
+}
+@keyframes rotategloballoader {
+  to {
+    transform: rotate(360deg);
+    box-shadow: 0 0 90px blue;
+  }
+}

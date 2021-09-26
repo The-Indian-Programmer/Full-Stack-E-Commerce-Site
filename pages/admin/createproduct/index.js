@@ -9,11 +9,13 @@ import { getCategories } from "../../../src/routes/category";
 import { imageUpload } from "../../api/upload/imageUpload";
 import { postProductData } from "../../../src/routes/productData";
 import ButtonLoader from "../../../component/ButtonLoader/ButtonLoader";
+import GlobalLoader from "../../../component/GlobalLoader/GlobalLoader";
 
 const CreateProduct = ({ data }) => {
   const [images, setImages] = useState([]);
   const [btnLoading, setBtnLoading] = useState(false);
   const dispatch = useDispatch();
+  const [tab, setTab] = useState(0);
   const [inputData, setInputData] = useState({
     title: "",
     price: "",
@@ -137,6 +139,7 @@ const CreateProduct = ({ data }) => {
     });
     setImages(imagebox);
   };
+
   return (
     <>
       <Head>
@@ -149,6 +152,49 @@ const CreateProduct = ({ data }) => {
         />
       </Head>
       <main className="create_product">
+        {btnLoading ? <GlobalLoader /> : ""}
+        <div className="image_container">
+          <div className="head">
+            <img
+              className="productImage"
+              src={
+                images.length === 0
+                  ? "https://res.cloudinary.com/sumitkosta/image/upload/v1631934390/xwuviwyh0ym4lurblj64.png"
+                  : images[tab].url
+                  ? images[tab].url
+                  : URL.createObjectURL(images[tab])
+              }
+              alt=""
+            />
+          </div>
+          <div className="images">
+            {images.map((file, index) => {
+              return (
+                <div key={index} className={`image`}>
+                  <img
+                    src={file.url ? file.url : URL.createObjectURL(file)}
+                    alt=""
+                  />
+                  <span onClick={() => removeImage(index)} className="close">
+                    X
+                  </span>
+                </div>
+              );
+            })}
+            <div className="image_input">
+              <label htmlFor="image">
+                <i class="fas fa-upload"></i>
+              </label>
+              <input
+                id="image"
+                type="file"
+                name="image"
+                multiple
+                onChange={handleUploadChange}
+              />
+            </div>
+          </div>
+        </div>
         <form>
           <div className="title">
             <input
@@ -243,36 +289,9 @@ const CreateProduct = ({ data }) => {
             onClick={handleFormSubmit}
             className="btn_create_product"
           >
-            {btnLoading ? <ButtonLoader /> : "Submit"}
+            Submit
           </button>
         </form>
-        <div className="image_container">
-          <div className="image_input">
-            <label htmlFor="image">Upload</label>
-            <input
-              id="image"
-              type="file"
-              name="image"
-              multiple
-              onChange={handleUploadChange}
-            />
-          </div>
-          <div className="images">
-            {images.map((file, index) => {
-              return (
-                <div key={index} className={`image`}>
-                  <img
-                    src={file.url ? file.url : URL.createObjectURL(file)}
-                    alt=""
-                  />
-                  <span onClick={() => removeImage(index)} className="close">
-                    X
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
       </main>
     </>
   );

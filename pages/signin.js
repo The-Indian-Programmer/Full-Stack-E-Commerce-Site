@@ -2,6 +2,7 @@ import React from "react";
 import SignInPage from "../component/SignInPage/SignIn";
 import Head from "next/head";
 const SignIn = () => {
+  console.log(process.env.BASE_URL);
   return (
     <>
       <Head>

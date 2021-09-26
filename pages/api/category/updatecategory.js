@@ -21,9 +21,10 @@ const updateCategory = async (req, res) => {
     const updateQuery = await categorySchema.findByIdAndUpdate(id, {
       name,
     });
+    const categories = await categorySchema.find();
 
     if (updateQuery) {
-      return res.status(200).json({ message: "Category Updated" });
+      return res.status(200).json({ message: "Category Updated", categories });
     }
     return res.json({ err: "Some Error Found" });
   } catch (err) {

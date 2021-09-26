@@ -6,14 +6,15 @@ import {
   updateCategories,
 } from "../../../src/routes/category";
 import Head from "next/dist/shared/lib/head";
-import { setUser, showNotification } from "../../../store/index";
-import { useDispatch } from "react-redux";
+import { setCategory, setUser, showNotification } from "../../../store/index";
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { getData } from "../../../src/routes/userData";
 const Categories = ({ data }) => {
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.category);
   const [name, setName] = useState("");
   const cookie = Cookies.get("userAuth");
-  const dispatch = useDispatch();
   const categorySubmit = async (e) => {
     e.preventDefault();
     const res = await createCategories(
@@ -28,6 +29,14 @@ const Categories = ({ data }) => {
         })
       );
     }
+    dispatch(
+      showNotification({
+        show: true,
+        data: { message: res.message, type: "success" },
+      })
+    );
+    setName("");
+    dispatch(setCategory(res.categories));
   };
   useEffect(() => {
     if (cookie === undefined) {
@@ -63,6 +72,7 @@ const Categories = ({ data }) => {
         data: { message: "Category Deleted", type: "success" },
       })
     );
+    dispatch(setCategory(deleteResponse.categories));
   };
   const updateCategory = async (id) => {
     const newName = prompt("Updated Name");
@@ -84,6 +94,8 @@ const Categories = ({ data }) => {
         data: { message: "Category Updated", type: "success" },
       })
     );
+    console.log(updateResponse);
+    dispatch(setCategory(updateResponse.categories));
   };
   return (
     <>
@@ -111,7 +123,7 @@ const Categories = ({ data }) => {
           <button className="category_submit">Submit</button>
         </form>
         <div className="category_container">
-          {data.map((item) => {
+          {categories.map((item) => {
             return (
               <div key={item._id} className="category">
                 <h2 className="name">{item.name.toUpperCase()}</h2>
