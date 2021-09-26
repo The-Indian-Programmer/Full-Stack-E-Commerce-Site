@@ -37,7 +37,7 @@ const Cart = () => {
         />
         <script
           async
-          src={`https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}&currency=USD`}
+          src={`https://www.paypal.com/sdk/js?client-id=AYkeSfjbUKZmWg-pJ3RpHW95QWSKtX5ItvCPBSPZ7hEfU4n7zovEJHIf5ZLu1FydD0SN9NV-5s48ZSSB&currency=USD`}
         ></script>
       </Head>
       <main>
