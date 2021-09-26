@@ -1,4 +1,4 @@
-const baseurl = process.env.BASE_URL;
+const baseUrl = process.env.BASE_URL;
 
 export const postProductRating = async (
   url,
@@ -8,7 +8,7 @@ export const postProductRating = async (
   ratingtext,
   name
 ) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const postProductRating = async (
   return data;
 };
 export const putProductRating = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

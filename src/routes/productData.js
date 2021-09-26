@@ -1,14 +1,14 @@
-const baseurl = process.env.BASE_URL;
+const baseUrl = process.env.BASE_URL;
 
 export const getProductData = async (url) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "GET",
   });
   const data = await res.json();
   return data;
 };
 export const getProductById = async (url, id) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export const getProductById = async (url, id) => {
   return data;
 };
 export const getProductByCategory = async (url, category) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const getProductByCategory = async (url, category) => {
   return data;
 };
 export const postProductData = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +41,7 @@ export const postProductData = async (url, post) => {
   return data;
 };
 export const putProductData = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const putProductData = async (url, post) => {
   return data;
 };
 // export const patchData = async (url, post, token) => {
-//   const res = await fetch(`${baseurl}/api/${url}`, {
+//   const res = await fetch(`/api/${url}`, {
 //     method: "PATCH",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export const putProductData = async (url, post) => {
 // };
 
 export const deleteProductData = async (url, id) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

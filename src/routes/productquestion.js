@@ -1,4 +1,4 @@
-const baseurl = process.env.BASE_URL;
+const baseUrl = process.env.BASE_URL;
 
 export const postProductQuestion = async (
   url,
@@ -7,7 +7,7 @@ export const postProductQuestion = async (
   question,
   name
 ) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const postProductQuestion = async (
   return data;
 };
 export const putProductQuestion = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export const putProductQuestion = async (url, post) => {
   return data;
 };
 // export const patchData = async (url, post, token) => {
-//   const res = await fetch(`${baseurl}/api/${url}`, {
+//   const res = await fetch(`/api/${url}`, {
 //     method: "PATCH",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const putProductQuestion = async (url, post) => {
 // };
 
 export const deleteProductQuestion = async (url, id) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

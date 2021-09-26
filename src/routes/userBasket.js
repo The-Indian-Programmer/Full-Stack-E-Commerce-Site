@@ -1,6 +1,6 @@
 const baseurl = process.env.BASE_URL;
 export const increaseProduct = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export const increaseProduct = async (url, post) => {
   return data;
 };
 export const decreaseProduct = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const decreaseProduct = async (url, post) => {
   return data;
 };
 export const addToBasket = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export const addToBasket = async (url, post) => {
   return data;
 };
 export const removeFromBasket = async (url, post) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

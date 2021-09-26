@@ -1,7 +1,7 @@
 const baseurl = process.env.BASE_URL;
 
 export const addOrder = async (url, user, userInfo, amount) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export const addOrder = async (url, user, userInfo, amount) => {
   return data;
 };
 export const getUserOrders = async (url, email) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const getUserOrders = async (url, email) => {
   return data;
 };
 export const changeDeliveryStatus = async (url, userid, orderid) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

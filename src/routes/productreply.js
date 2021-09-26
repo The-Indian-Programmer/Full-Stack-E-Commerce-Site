@@ -8,7 +8,7 @@ export const postProductReply = async (
   productid,
   replytext
 ) => {
-  const res = await fetch(`${baseurl}/api/${url}`, {
+  const res = await fetch(`/api/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export const postProductReply = async (
   return data;
 };
 // export const putProductQuestion = async (url, post) => {
-//   const res = await fetch(`${baseurl}/api/${url}`, {
+//   const res = await fetch(`/api/${url}`, {
 //     method: "PUT",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const postProductReply = async (
 //   return data;
 // };
 // // export const patchData = async (url, post, token) => {
-// //   const res = await fetch(`${baseurl}/api/${url}`, {
+// //   const res = await fetch(`/api/${url}`, {
 // //     method: "PATCH",
 // //     headers: {
 // //       "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const postProductReply = async (
 // // };
 
 // export const deleteProductQuestion = async (url, id) => {
-//   const res = await fetch(`${baseurl}/api/${url}`, {
+//   const res = await fetch(`/api/${url}`, {
 //     method: "DELETE",
 //     headers: {
 //       "Content-Type": "application/json",
