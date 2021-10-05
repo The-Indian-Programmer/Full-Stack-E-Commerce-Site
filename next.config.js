@@ -1,4 +1,5 @@
 module.exports = {
+  distDir: "build",
   reactStrictMode: true,
   async rewrites() {
     return [
